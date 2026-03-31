@@ -1,0 +1,100 @@
+{
+  "sansrusmod.config.title": "SansrusMod — Settings",
+  
+  "sansrusmod.config.category.main": "Main",
+  "sansrusmod.config.category.main.tooltip": "Enable and disable all mod features",
+  "sansrusmod.config.category.death": "Death",
+  "sansrusmod.config.category.death.tooltip": "Settings related to player death",
+  "sansrusmod.config.category.book": "Book",
+  "sansrusmod.config.category.book.tooltip": "Settings for books with quill",
+  "sansrusmod.config.category.rmb": "RMB Cooldown",
+  "sansrusmod.config.category.rmb.tooltip": "Right mouse button cooldown settings",
+  "sansrusmod.config.category.commands": "Commands",
+  "sansrusmod.config.category.commands.tooltip": "Chat command input settings",
+  
+  "sansrusmod.config.disableInvisibility": "Disable player invisibility",
+  "sansrusmod.config.disableInvisibility.tooltip": "Players with invisibility effect will still be visible",
+  
+  "sansrusmod.config.deathWaypoint": "Death waypoints (Xaero)",
+  "sansrusmod.config.deathWaypoint.tooltip": "After death, a clickable message appears in chat to create a waypoint",
+  
+  "sansrusmod.config.autoRespawn": "Automatic respawn",
+  "sansrusmod.config.autoRespawn.tooltip": "Player automatically respawns immediately after death",
+  
+  "sansrusmod.config.disableRmbCooldown": "Disable RMB cooldown",
+  "sansrusmod.config.disableRmbCooldown.tooltip": "Removes internal RMB cooldown when held for more than 20 ticks",
+  
+  "sansrusmod.config.itemTooltipComponents": "Item component tooltip",
+  "sansrusmod.config.itemTooltipComponents.tooltip": "Displays item components in its tooltip",
+  
+  "sansrusmod.config.bookPageHold": "Book page flipping by holding",
+  "sansrusmod.config.bookPageHold.tooltip": "Hold the page flip button — pages will switch automatically",
+  
+  "sansrusmod.config.bookScrollSpeed": "Book scroll speed",
+  "sansrusmod.config.bookScrollSpeed.tooltip": "1 — slow (once per 40 ticks), 40 — fast (once per tick)",
+  
+  "sansrusmod.config.shiftDragItems": "Transfer items with Shift held",
+  "sansrusmod.config.shiftDragItems.tooltip": "Drag mouse over slots with Shift held for quick transfer",
+  
+  "sansrusmod.config.copyChatMessage": "Copy chat messages",
+  "sansrusmod.config.copyChatMessage.tooltip": "Shift + click on message copies its text to clipboard",
+  
+  "sansrusmod.config.cyrillicCommands": "Cyrillic conversion in commands",
+  "sansrusmod.config.cyrillicCommands.tooltip": "Command suggestions work even when typing in Russian layout",
+  
+  "sansrusmod.config.deathLog": "Save inventory snapshot on death",
+  "sansrusmod.config.deathLog.tooltip": "Saves date, time, and full inventory at the moment of player death if inventory had items",
+  
+  "sansrusmod.config.tooltipMap": "Map tooltip",
+  "sansrusmod.config.tooltipMap.tooltip": "Shows the map in tooltip without needing to hold it",
+  
+  "sansrusmod.config.matchingSlotHighlight": "Stack highlighting",
+  "sansrusmod.config.matchingSlotHighlight.tooltip": "Highlights slots with identical items",
+  
+  "sansrusmod.config.chatMessageCounter": "Anti-spam",
+  "sansrusmod.config.chatMessageCounter.tooltip": "Combines identical chat messages into one message",
+  
+  "sansrusmod.config.armorbarDisplay": "Armor slots in hotbar",
+  "sansrusmod.config.armorbarDisplay.tooltip": "0 — Off, 1-20 — display time in seconds, 21 — Always",
+  "sansrusmod.config.armorbarDisplay.off": "Off",
+  "sansrusmod.config.armorbarDisplay.always": "Always",
+  "sansrusmod.config.armorbarDisplay.seconds": "%d sec",
+  
+  "sansrusmod.config.coordParser": "Coordinate parser",
+  "sansrusmod.config.coordParser.tooltip": "Parses coordinates from chat and creates Xaero waypoint on click",
+  
+  "sansrusmod.config.protectVillage": "Villager protection",
+  "sansrusmod.config.protectVillage.tooltip": "Prevents player from accidentally attacking villagers",
+  
+  "sansrusmod.config.elytraFeature": "Elytra render on chestplate",
+  "sansrusmod.config.elytraFeature.tooltip": "Displays elytra on chestplate if it has glider tag",
+  
+  "sansrusmod.message.deathCoords": "Death coordinates: ",
+  "sansrusmod.message.deathCoords.hover": "Click to create death waypoint",
+  "sansrusmod.message.waypointCreated": "Death waypoint created!",
+  "sansrusmod.message.waypointError": "Error: ",
+  "sansrusmod.message.waypointErrorSession": "Error: minimap session == null",
+  "sansrusmod.message.waypointErrorWorld": "Error: current world == null",
+  "sansrusmod.message.waypointErrorContainer": "Error: container not found for path ",
+  "sansrusmod.message.waypointErrorVisit": "Visit dimension %s first!",
+  "sansrusmod.message.waypointErrorNoWorlds": "Error: no worlds in container",
+  "sansrusmod.message.waypointErrorSet": "Error: waypoint set == null",
+  "sansrusmod.message.waypointErrorSave": "Save error: ",
+  "sansrusmod.message.coordWaypointCreated": "Waypoint created: ",
+  
+  "sansrusmod.waypoint.death.name": "Death point",
+  "sansrusmod.waypoint.death.symbol": "☠",
+  "sansrusmod.waypoint.coord.symbol": "★",
+  
+  "sansrusmod.coordParser.createWaypoint": "Create waypoint: %d %d %d",
+  "sansrusmod.coordParser.createWaypointNoY": "Create waypoint: %d 64 %d (Y=64)",
+  
+  "sansrusmod.chat.messageCopied": "Message copied to clipboard",
+  
+  "sansrusmod.deathHistory.title": "Death History",
+  "sansrusmod.deathHistory.noDeaths": "No deaths",
+  "sansrusmod.deathHistory.noDate": "No date",
+  "sansrusmod.deathHistory.inventoryCopied": "Inventory copied to clipboard",
+  
+  "sansrusmod.tooltip.components": "Components:"
+}

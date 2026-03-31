@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "sansrusmod",
+  "version": "${version}",
+  "name": "SansrusMod",
+  "description": " ",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/sansrusmod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.example.sansrus.sansrusmod.client.SansrusModClient"
+    ],
+    "main": [
+      "org.example.sansrus.sansrusmod.SansrusMod"
+    ],
+    "modmenu": [
+      "org.example.sansrus.sansrusmod.client.SansrusModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "sansrusmod.mixins.json",
+    {
+      "config": "sansrusmod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": ">=${minecraft_version}"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "sansrusmod.config.title": "SansrusMod — Настройки",
+  
+  "sansrusmod.config.category.main": "Основное",
+  "sansrusmod.config.category.main.tooltip": "Включение и отключение всех функций мода",
+  "sansrusmod.config.category.death": "Смерть",
+  "sansrusmod.config.category.death.tooltip": "Настройки, связанные со смертью игрока",
+  "sansrusmod.config.category.book": "Книга",
+  "sansrusmod.config.category.book.tooltip": "Настройки для книг с пером",
+  "sansrusmod.config.category.rmb": "ПКМ Кулдаун",
+  "sansrusmod.config.category.rmb.tooltip": "Настройки кулдауна правой кнопки мыши",
+  "sansrusmod.config.category.commands": "Команды",
+  "sansrusmod.config.category.commands.tooltip": "Настройки ввода команд в чате",
+  
+  "sansrusmod.config.disableInvisibility": "Отключение невидимости игроков",
+  "sansrusmod.config.disableInvisibility.tooltip": "Игроки с эффектом невидимости всё равно будут видны",
+  
+  "sansrusmod.config.deathWaypoint": "Метки смерти (Xaero)",
+  "sansrusmod.config.deathWaypoint.tooltip": "После смерти в чате появляется кликабельное сообщение для создания метки",
+  
+  "sansrusmod.config.autoRespawn": "Автоматический респавн",
+  "sansrusmod.config.autoRespawn.tooltip": "Игрок автоматически возрождается сразу после смерти",
+  
+  "sansrusmod.config.disableRmbCooldown": "Отключение кулдауна ПКМ",
+  "sansrusmod.config.disableRmbCooldown.tooltip": "Снимает внутренний кулдаун ПКМ при зажатии дольше 20 тиков",
+  
+  "sansrusmod.config.itemTooltipComponents": "Tooltip компонентов предмета",
+  "sansrusmod.config.itemTooltipComponents.tooltip": "Отображает компоненты предмета в его тултипе",
+  
+  "sansrusmod.config.bookPageHold": "Перелистывание книги зажатием",
+  "sansrusmod.config.bookPageHold.tooltip": "Зажмите кнопку перелистывания — страницы будут переключаться автоматически",
+  
+  "sansrusmod.config.bookScrollSpeed": "Скорость прокрутки книги",
+  "sansrusmod.config.bookScrollSpeed.tooltip": "1 — медленно (раз в 40 тиков), 40 — быстро (раз в тик)",
+  
+  "sansrusmod.config.shiftDragItems": "Перенос предметов зажатым Shift",
+  "sansrusmod.config.shiftDragItems.tooltip": "Проведите мышью по слотам с зажатым Shift для быстрого переноса",
+  
+  "sansrusmod.config.copyChatMessage": "Копирование сообщений из чата",
+  "sansrusmod.config.copyChatMessage.tooltip": "Shift + клик по сообщению копирует его текст в буфер обмена",
+  
+  "sansrusmod.config.cyrillicCommands": "Конвертация кириллицы в командах",
+  "sansrusmod.config.cyrillicCommands.tooltip": "Подсказки команд работают даже при вводе на русской раскладке",
+  
+  "sansrusmod.config.deathLog": "Сохранение снимка инвентаря при смерти",
+  "sansrusmod.config.deathLog.tooltip": "Сохраняет дату, время, а так же полный инвентарь в момент смерти игрока, если в инвентаре были предметы",
+  
+  "sansrusmod.config.tooltipMap": "Тултип карты",
+  "sansrusmod.config.tooltipMap.tooltip": "Показывает в тултипе карты саму карту, без нужды брать ее в руки",
+  
+  "sansrusmod.config.matchingSlotHighlight": "Подсветка стаков",
+  "sansrusmod.config.matchingSlotHighlight.tooltip": "Подсвечивает слоты с одинаковыми предметами",
+  
+  "sansrusmod.config.chatMessageCounter": "Антиспам",
+  "sansrusmod.config.chatMessageCounter.tooltip": "Сохраняет одинаковые сообщения из чата в одно сообщение",
+  
+  "sansrusmod.config.armorbarDisplay": "Слоты брони в хотбаре",
+  "sansrusmod.config.armorbarDisplay.tooltip": "0 — Выкл, 1-20 — время показа в секундах, 21 — Всегда",
+  "sansrusmod.config.armorbarDisplay.off": "Выкл",
+  "sansrusmod.config.armorbarDisplay.always": "Всегда",
+  "sansrusmod.config.armorbarDisplay.seconds": "%d сек",
+  
+  "sansrusmod.config.coordParser": "Парсер координат",
+  "sansrusmod.config.coordParser.tooltip": "Парсит координаты из чата и по клику создает метку Xaero",
+  
+  "sansrusmod.config.protectVillage": "Защита жителей",
+  "sansrusmod.config.protectVillage.tooltip": "Не дает игроку случайно атаковать жителей",
+  
+  "sansrusmod.config.elytraFeature": "Рендер элитр на нагруднике",
+  "sansrusmod.config.elytraFeature.tooltip": "Отображает элитры на нагружнике, если на нем есть тег glider",
+  
+  "sansrusmod.message.deathCoords": "Координаты смерти: ",
+  "sansrusmod.message.deathCoords.hover": "Нажмите, чтобы создать точку смерти",
+  "sansrusmod.message.waypointCreated": "Точка смерти создана!",
+  "sansrusmod.message.waypointError": "Ошибка: ",
+  "sansrusmod.message.waypointErrorSession": "Ошибка: сессия миникарты == null",
+  "sansrusmod.message.waypointErrorWorld": "Ошибка: текущий мир == null",
+  "sansrusmod.message.waypointErrorContainer": "Ошибка: контейнер не найден для пути ",
+  "sansrusmod.message.waypointErrorVisit": "Посетите измерение %s сначала!",
+  "sansrusmod.message.waypointErrorNoWorlds": "Ошибка: в контейнере нет миров",
+  "sansrusmod.message.waypointErrorSet": "Ошибка: набор вейпоинтов == null",
+  "sansrusmod.message.waypointErrorSave": "Ошибка сохранения: ",
+  "sansrusmod.message.coordWaypointCreated": "Метка создана: ",
+  
+  "sansrusmod.waypoint.death.name": "Точка смерти",
+  "sansrusmod.waypoint.death.symbol": "☠",
+  "sansrusmod.waypoint.coord.symbol": "★",
+  
+  "sansrusmod.coordParser.createWaypoint": "Создать метку: %d %d %d",
+  "sansrusmod.coordParser.createWaypointNoY": "Создать метку: %d 64 %d (Y=64)",
+  
+  "sansrusmod.chat.messageCopied": "Сообщение скопировано в буфер обмена",
+  
+  "sansrusmod.deathHistory.title": "История смертей",
+  "sansrusmod.deathHistory.noDeaths": "Нет смертей",
+  "sansrusmod.deathHistory.noDate": "Нет даты",
+  "sansrusmod.deathHistory.inventoryCopied": "Инвентарь скопирован в буфер обмена",
+  
+  "sansrusmod.tooltip.components": "Компоненты:"
+}
