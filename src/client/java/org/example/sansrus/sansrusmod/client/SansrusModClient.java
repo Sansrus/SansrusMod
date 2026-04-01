@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -51,11 +52,14 @@ public class SansrusModClient implements ClientModInitializer {
 
     private ItemStack[] cachedInventory = new ItemStack[41];
     public static SansrusConfig config;
+    public static boolean isXaeroMinimapLoaded = false;
 
     @Override
     public void onInitializeClient() {
         System.setProperty("java.awt.headless", "false");
         config = SansrusConfig.load();
+
+        isXaeroMinimapLoaded = FabricLoader.getInstance().isModLoaded("xaerominimap");
 
         TooltipComponentCallback.EVENT.register(data -> {
             if (data instanceof MapTooltipData mapData) {
@@ -138,6 +142,8 @@ public class SansrusModClient implements ClientModInitializer {
     }
 
     private void createDeathWaypoint(int x, int y, int z, String targetDim) {
+        if (!isXaeroMinimapLoaded) return;
+        
         try {
             MinecraftClient client = MinecraftClient.getInstance();
             if (client.player == null) return;
@@ -252,6 +258,8 @@ public class SansrusModClient implements ClientModInitializer {
     }
 
     private void createCoordWaypoint(int x, int y, int z) {
+        if (!isXaeroMinimapLoaded) return;
+        
         try {
             MinecraftClient client = MinecraftClient.getInstance();
             if (client.player == null) return;
@@ -300,6 +308,8 @@ public class SansrusModClient implements ClientModInitializer {
 
         DeathHistoryManager.saveSnapshot(snapshot);
 
-        sendDeathMessage(client, player.getBlockPos(), player.getWorld().getRegistryKey().getValue().getPath());
+        if (isXaeroMinimapLoaded) {
+            sendDeathMessage(client, player.getBlockPos(), player.getWorld().getRegistryKey().getValue().getPath());
+        }
     }
 }

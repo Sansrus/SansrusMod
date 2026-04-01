@@ -7,6 +7,7 @@ import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.text.*;
 import net.minecraft.text.PlainTextContent;
 import net.minecraft.util.Formatting;
+import org.example.sansrus.sansrusmod.client.SansrusModClient;
 import org.example.sansrus.sansrusmod.client.chatcoord.ChatPipelineFlags;
 import org.example.sansrus.sansrusmod.client.chatcoord.CoordParser;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,11 +39,10 @@ public abstract class ChatCoordParserMixin {
         if (sansrus$parsingCoords) return;
         if (ChatPipelineFlags.deathMessageActive) return;
         if (ChatPipelineFlags.coordReinjecting) return;
+        if (!SansrusModClient.isXaeroMinimapLoaded) return;
 
         List<CoordParser.CoordMatch> matches = CoordParser.findAll(message.getString());
         if (matches.isEmpty()) return;
-
-        MinecraftClient mc = MinecraftClient.getInstance();
 
         MutableText result = sansrus$transformNode(message);
 

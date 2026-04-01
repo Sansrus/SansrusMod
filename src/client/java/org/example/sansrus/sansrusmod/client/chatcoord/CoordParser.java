@@ -104,6 +104,6 @@ public class CoordParser {
 
     // Координаты Minecraft обычно в диапазоне [-30000000; 30000000]
     private static boolean isCoordRange(int n) {
-        return n > 0 && n <= 30_000_000;
+        return n > 0 && n <= 60_000_000;
     }
 }

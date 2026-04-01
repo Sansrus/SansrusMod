@@ -80,6 +80,9 @@ public class SansrusConfig {
             String playerName = client.player.getName().getString();
             isAllowedPlayer = playerName.equals("Sansrus") || playerName.equals("EN403");
         }
+        
+        // Проверка наличия Xaero's Minimap
+        boolean hasXaero = SansrusModClient.isXaeroMinimapLoaded;
 
         // ═══════════════════════════════════════════════
         //  Создаём опции ОДИН РАЗ
@@ -193,7 +196,9 @@ public class SansrusConfig {
         if (isAllowedPlayer) {
             mainCategoryBuilder.option(optDisableInvisibility);
         }
-        mainCategoryBuilder.option(optDeathWaypoint);
+        if (hasXaero) {
+            mainCategoryBuilder.option(optDeathWaypoint);
+        }
         if (isAllowedPlayer) {
             mainCategoryBuilder.option(optAutoRespawn);
         }
@@ -209,8 +214,11 @@ public class SansrusConfig {
                 .option(optToolTipMap)
                 .option(optHightLight)
                 .option(optChatMessage)
-                .option(optArmorBarDisplay)
-                .option(optCoordParsesr)
+                .option(optArmorBarDisplay);
+        if (hasXaero) {
+            mainCategoryBuilder.option(optCoordParsesr);
+        }
+        mainCategoryBuilder
                 .option(optProtectVillage)
                 .option(optElytraFeatures);
 
