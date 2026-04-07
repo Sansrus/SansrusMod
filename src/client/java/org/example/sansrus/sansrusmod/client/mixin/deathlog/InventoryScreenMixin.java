@@ -30,6 +30,9 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
             DEATH_BTN_HLGD_TEX
     );
 
+    @Unique
+    private TexturedButtonWidget sansrus$deathHistoryButton;
+
     public InventoryScreenMixin(PlayerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
@@ -38,10 +41,15 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
     private void sansrus$addDeathHistoryButton(CallbackInfo ci) {
         if (!SansrusModClient.config.deathLogbool) return;
 
+        // Удаляем старую кнопку, если она существует
+        if (sansrus$deathHistoryButton != null) {
+            this.remove(sansrus$deathHistoryButton);
+        }
+
         int xPos = this.x + 104 + 22;
         int yPos = this.height / 2 - 22;
 
-        TexturedButtonWidget button = new TexturedButtonWidget(
+        sansrus$deathHistoryButton = new TexturedButtonWidget(
                 xPos, yPos,
                 18, 18,
                 TEXTURES,
@@ -53,6 +61,17 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
                 Text.literal("Лог смертей")
         );
 
-        this.addDrawableChild(button);
+        this.addDrawableChild(sansrus$deathHistoryButton);
+    }
+
+    @Inject(method = "onRecipeBookToggled", at = @At("TAIL"))
+    private void sansrus$updateButtonPosition(CallbackInfo ci) {
+        if (!SansrusModClient.config.deathLogbool) return;
+        if (sansrus$deathHistoryButton == null) return;
+
+        // Обновляем позицию кнопки после переключения книги рецептов
+        int xPos = this.x + 104 + 22;
+        int yPos = this.height / 2 - 22;
+        sansrus$deathHistoryButton.setPosition(xPos, yPos);
     }
 }

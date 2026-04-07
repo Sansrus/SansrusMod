@@ -39,8 +39,8 @@
   "sansrusmod.config.copyChatMessage": "Копирование сообщений из чата",
   "sansrusmod.config.copyChatMessage.tooltip": "Shift + клик по сообщению копирует его текст в буфер обмена",
   
-  "sansrusmod.config.cyrillicCommands": "Конвертация кириллицы в командах",
-  "sansrusmod.config.cyrillicCommands.tooltip": "Подсказки команд работают даже при вводе на русской раскладке",
+  "sansrusmod.config.cyrillicCommands": "Ввод команд кириллицей",
+  "sansrusmod.config.cyrillicCommands.tooltip": "Позволяет писать команды на русской раскладке - они автоматически конвертируются в латиницу",
   
   "sansrusmod.config.deathLog": "Сохранение снимка инвентаря при смерти",
   "sansrusmod.config.deathLog.tooltip": "Сохраняет дату, время, а так же полный инвентарь в момент смерти игрока, если в инвентаре были предметы",
@@ -68,6 +68,12 @@
   
   "sansrusmod.config.elytraFeature": "Рендер элитр на нагруднике",
   "sansrusmod.config.elytraFeature.tooltip": "Отображает элитры на нагружнике, если на нем есть тег glider",
+  
+  "sansrusmod.config.disableNauseaOverlay": "Отмена виньетки укачивания",
+  "sansrusmod.config.disableNauseaOverlay.tooltip": "Убирает отображение виньетки укачивания. ПРИМЕНЯТЬ В СЛУЧАЕ ЧЕРНОГО ЭКРАНА ПРИ ЭФФЕКТЕ",
+  
+  "sansrusmod.config.ctrlDropAll": "Выброс всех предметов с Ctrl",
+  "sansrusmod.config.ctrlDropAll.tooltip": "Удерживайте Ctrl при выбросе предмета, чтобы выбросить все предметы этого типа из инвентаря",
   
   "sansrusmod.message.deathCoords": "Координаты смерти: ",
   "sansrusmod.message.deathCoords.hover": "Нажмите, чтобы создать точку смерти",

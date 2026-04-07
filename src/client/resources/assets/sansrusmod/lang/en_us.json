@@ -39,8 +39,8 @@
   "sansrusmod.config.copyChatMessage": "Copy chat messages",
   "sansrusmod.config.copyChatMessage.tooltip": "Shift + click on message copies its text to clipboard",
   
-  "sansrusmod.config.cyrillicCommands": "Cyrillic conversion in commands",
-  "sansrusmod.config.cyrillicCommands.tooltip": "Command suggestions work even when typing in Russian layout",
+  "sansrusmod.config.cyrillicCommands": "Cyrillic command input",
+  "sansrusmod.config.cyrillicCommands.tooltip": "Allows typing commands in Cyrillic layout - they will be automatically converted to Latin",
   
   "sansrusmod.config.deathLog": "Save inventory snapshot on death",
   "sansrusmod.config.deathLog.tooltip": "Saves date, time, and full inventory at the moment of player death if inventory had items",
@@ -68,6 +68,12 @@
   
   "sansrusmod.config.elytraFeature": "Elytra render on chestplate",
   "sansrusmod.config.elytraFeature.tooltip": "Displays elytra on chestplate if it has glider tag",
+  
+  "sansrusmod.config.disableNauseaOverlay": "Disable nausea overlay",
+  "sansrusmod.config.disableNauseaOverlay.tooltip": "Disables nausea overlay rendering. USE IF BLACK SCREEN APPEARS WITH NAUSEA EFFECT",
+  
+  "sansrusmod.config.ctrlDropAll": "Drop all items with Ctrl",
+  "sansrusmod.config.ctrlDropAll.tooltip": "Hold Ctrl while dropping an item to drop all items of that type from inventory",
   
   "sansrusmod.message.deathCoords": "Death coordinates: ",
   "sansrusmod.message.deathCoords.hover": "Click to create death waypoint",

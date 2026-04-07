@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "ChatHudMixin",
-    "ChatInputSuggestorMixin",
     "DisableRmbCooldownMixin",
     "HandledScreenMixin",
     "VillagerProtectMixin",
@@ -14,9 +13,12 @@
     "book.BookScreenMixin",
     "chat.ChatMessageCounterMixin",
     "chatcoord.ChatCoordParserMixin",
+    "cyrilliccommands.ChatInputSuggestorMixin",
+    "cyrilliccommands.ChatScreenMixin",
     "deathlog.InventoryScreenMixin",
     "elytrafeature.ElytraFeatureRendererMixin",
-    "highlight.MatchingSlotHighlightMixin"
+    "highlight.MatchingSlotHighlightMixin",
+    "nauseafix.NauseaOverlayFixMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -27,7 +29,6 @@
   "mixins": [
     "EntityMixin",
     "ItemStackTooltipMixin",
-    "StringHelperMixin",
     "deathlog.DeathInventoryCaptureMixin",
     "maptip.ItemStackMapTooltipMixin"
   ]

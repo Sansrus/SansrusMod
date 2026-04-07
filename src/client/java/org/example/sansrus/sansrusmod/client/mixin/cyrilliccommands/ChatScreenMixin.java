@@ -1,18 +1,17 @@
-package org.example.sansrus.sansrusmod.client.mixin;
+package org.example.sansrus.sansrusmod.client.mixin.cyrilliccommands;
 
-import net.minecraft.client.gui.screen.ChatInputSuggestor;
-import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.gui.screen.ChatScreen;
 import org.example.sansrus.sansrusmod.client.SansrusModClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mixin(ChatInputSuggestor.class)
-public class ChatInputSuggestorMixin {
+@Mixin(ChatScreen.class)
+public class ChatScreenMixin {
 
     @Unique
     private static final Map<Character, Character> CYRILLIC_TO_LATIN = new HashMap<>();
@@ -37,21 +36,18 @@ public class ChatInputSuggestorMixin {
         CYRILLIC_TO_LATIN.put('ь', 'm');
     }
 
-    @Redirect(
-            method = "refresh",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/widget/TextFieldWidget;getText()Ljava/lang/String;"
-            )
+    @ModifyVariable(
+            method = "sendMessage",
+            at = @At("HEAD"),
+            argsOnly = true
     )
-    private String redirectGetTextForSuggestions(TextFieldWidget textField) {
-        String original = textField.getText();
-        if (!SansrusModClient.config.cyrillicCommands) return original;
-        return convertCommandInput(original);
+    private String convertCyrillicBeforeSend(String message) {
+        if (!SansrusModClient.config.cyrillicCommands) return message;
+        return sansrus$convertCommandInput(message);
     }
 
     @Unique
-    private static String convertCommandInput(String input) {
+    private static String sansrus$convertCommandInput(String input) {
         if (input.isEmpty() || input.charAt(0) != '/') {
             return input;
         }

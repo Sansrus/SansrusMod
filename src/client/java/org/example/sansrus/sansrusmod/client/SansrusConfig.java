@@ -35,6 +35,8 @@ public class SansrusConfig {
     public boolean coordparser          = true;
     public boolean protectVillage       = true;
     public boolean elytrafeaturerender  = true;
+    public boolean disableNauseaOverlay = false;
+    public boolean ctrlDropAll          = true;
 
 
 
@@ -183,6 +185,14 @@ public class SansrusConfig {
                 "sansrusmod.config.elytraFeature",
                 "sansrusmod.config.elytraFeature.tooltip",
                 true, () -> elytrafeaturerender, v -> elytrafeaturerender = v);
+        Option<Boolean> optDisableNauseaOverlay = bool(
+                "sansrusmod.config.disableNauseaOverlay",
+                "sansrusmod.config.disableNauseaOverlay.tooltip",
+                false, () -> disableNauseaOverlay, v -> disableNauseaOverlay = v);
+        Option<Boolean> optCtrlDropAll = bool(
+                "sansrusmod.config.ctrlDropAll",
+                "sansrusmod.config.ctrlDropAll.tooltip",
+                true, () -> ctrlDropAll, v -> ctrlDropAll = v);
 
         // ═══════════════════════════════════════════════
         //  Строим экран, переиспользуя те же объекты
@@ -220,7 +230,9 @@ public class SansrusConfig {
         }
         mainCategoryBuilder
                 .option(optProtectVillage)
-                .option(optElytraFeatures);
+                .option(optElytraFeatures)
+                .option(optDisableNauseaOverlay)
+                .option(optCtrlDropAll);
 
         return YetAnotherConfigLib.createBuilder()
                 .title(Text.translatable("sansrusmod.config.title"))
