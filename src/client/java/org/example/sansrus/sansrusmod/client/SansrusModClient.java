@@ -170,7 +170,11 @@ public class SansrusModClient implements ClientModInitializer {
 
 //            client.player.sendMessage(Text.literal("Текущий мир: " + currentWorld.getFullPath()).formatted(Formatting.YELLOW), false);
 
+            //? if >=1.21.11 {
+            /*String currentDim = client.player.getEntityWorld().getRegistryKey().getValue().getPath();
+            *///?} else {
             String currentDim = client.player.getWorld().getRegistryKey().getValue().getPath();
+            //?}
 //            client.player.sendMessage(Text.literal("Текущее измерение игрока: " + currentDim).formatted(Formatting.YELLOW), false);
 
             MinimapWorld world;
@@ -309,7 +313,11 @@ public class SansrusModClient implements ClientModInitializer {
         DeathHistoryManager.saveSnapshot(snapshot);
 
         if (isXaeroMinimapLoaded) {
+            //? if >=1.21.11 {
+            /*sendDeathMessage(client, player.getBlockPos(), player.getEntityWorld().getRegistryKey().getValue().getPath());
+            *///?} else {
             sendDeathMessage(client, player.getBlockPos(), player.getWorld().getRegistryKey().getValue().getPath());
+            //?}
         }
     }
 }

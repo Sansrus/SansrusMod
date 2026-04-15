@@ -3,10 +3,10 @@ package org.example.sansrus.sansrusmod.client.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.ChatHudLine;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.example.sansrus.sansrusmod.client.SansrusModClient;
+import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,7 +45,12 @@ public abstract class ChatHudMixin {
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     private void onMouseClicked(double mouseX, double mouseY, CallbackInfoReturnable<Boolean> cir) {
         if (!SansrusModClient.config.copyChatMessage) return;
-        if (Screen.hasShiftDown()) {
+        
+        long window = MinecraftClient.getInstance().getWindow().getHandle();
+        boolean shiftPressed = GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_SHIFT) == GLFW.GLFW_PRESS 
+                            || GLFW.glfwGetKey(window, GLFW.GLFW_KEY_RIGHT_SHIFT) == GLFW.GLFW_PRESS;
+        
+        if (shiftPressed) {
             double chatLineX = toChatLineX(mouseX);
             double chatLineY = toChatLineY(mouseY);
 

@@ -84,8 +84,16 @@ public class DeathHistoryScreen extends Screen {
         slideOffset = dir > 0 ? this.width : -this.width;
     }
 
+    //? if >=1.21.11 {
+    /*@Override
+    public boolean keyPressed(KeyInput keyInput) {
+        int keyCode = keyInput.key();
+        int scanCode = keyInput.scancode();
+        int modifiers = keyInput.modifiers();
+    *///?} else {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+    //?}
         if (keyCode == GLFW.GLFW_KEY_LEFT)  { navigate(-1); return true; }
         if (keyCode == GLFW.GLFW_KEY_RIGHT) { navigate(1);  return true; }
 
@@ -107,7 +115,11 @@ public class DeathHistoryScreen extends Screen {
             return true;
         }
 
+        //? if >=1.21.11 {
+        /*return super.keyPressed(keyInput);
+        *///?} else {
         return super.keyPressed(keyCode, scanCode, modifiers);
+        //?}
     }
 
 
@@ -160,8 +172,16 @@ public class DeathHistoryScreen extends Screen {
             context.drawItemTooltip(this.textRenderer, hovered, mouseX, mouseY);
         }
 
+        //? if >=1.21.11 {
+        /*if (pendingClipboardCopy && !animating) {
+            pendingClipboardCopy = false;
+            copyInventoryToClipboardSync(drawX);
+        }
+        *///?}
+
     }
     
+    //? if <1.21.11 {
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         boolean animating = Math.abs(slideOffset) >= 0.5f;
@@ -172,6 +192,7 @@ public class DeathHistoryScreen extends Screen {
         }
         super.renderBackground(context, mouseX, mouseY, delta);
     }
+    //?}
 
     private ItemStack drawInventoryPanel(DrawContext context,
                                          DeathHistoryManager.DeathSnapshot snap,

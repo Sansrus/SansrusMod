@@ -47,9 +47,17 @@ public abstract class BookEditScreenMixin {
             int interval = Math.max(1, 41 - SansrusModClient.config.bookScrollSpeed);
             if (sansrus$holdTicks >= 20 && (sansrus$holdTicks - 20) % interval == 0) {
                 if (nextHovered) {
+                    //? if >=1.21.11 {
+                    /*nextPageButton.onPress(null);
+                    *///?} else {
                     nextPageButton.onPress();
+                    //?}
                 } else {
+                    //? if >=1.21.11 {
+                    /*previousPageButton.onPress(null);
+                    *///?} else {
                     previousPageButton.onPress();
+                    //?}
                 }
             }
         } else {

@@ -6,8 +6,10 @@ import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
 import net.minecraft.client.render.entity.feature.ElytraFeatureRenderer;
 import net.minecraft.client.render.entity.model.ElytraEntityModel;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
+//? if <1.21.11 {
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.client.util.SkinTextures;
+//?}
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
@@ -43,7 +45,6 @@ public abstract class ElytraFeatureRendererMixin<S extends BipedEntityRenderStat
                           S bipedEntityRenderState, float f, float g, CallbackInfo ci) {
         if (!SansrusModClient.config.elytrafeaturerender) return;
 
-        // Проверяем все слоты экипировки на наличие компонента GLIDER
         ItemStack gliderStack = null;
         
         if (bipedEntityRenderState.equippedChestStack != null 
@@ -74,34 +75,44 @@ public abstract class ElytraFeatureRendererMixin<S extends BipedEntityRenderStat
         if (equippable == null || equippable.assetId().isEmpty()) return;
 
         RegistryKey<EquipmentAsset> assetId = equippable.assetId().get();
-        Identifier texture = getTextureFromState(bipedEntityRenderState);
+        Identifier texture = getElytraTexture(bipedEntityRenderState);
 
         matrixStack.push();
         matrixStack.translate(0.0F, 0.0F, 0.125F);
+
+        //? if <1.21.11 {
         this.equipmentRenderer.render(
                 EquipmentModel.LayerType.WINGS,
                 assetId,
                 elytraModel,
-                gliderStack,
+                elytraStack,
                 matrixStack,
                 vertexConsumerProvider,
                 i,
                 texture
         );
+        //?}
+        
         matrixStack.pop();
     }
 
     @Unique
-    private static Identifier getTextureFromState(BipedEntityRenderState state) {
+    private static Identifier getElytraTexture(BipedEntityRenderState state) {
+        //? if <1.21.11 {
         if (state instanceof PlayerEntityRenderState playerState) {
             SkinTextures skinTextures = playerState.skinTextures;
-            if (skinTextures.elytraTexture() != null) {
-                return skinTextures.elytraTexture();
-            }
-            if (skinTextures.capeTexture() != null && playerState.capeVisible) {
-                return skinTextures.capeTexture();
+            if (skinTextures != null) {
+                Identifier elytraTexture = skinTextures.elytraTexture();
+                if (elytraTexture != null) {
+                    return elytraTexture;
+                }
+                Identifier capeTexture = skinTextures.capeTexture();
+                if (capeTexture != null && playerState.capeVisible) {
+                    return capeTexture;
+                }
             }
         }
+        //?}
         return null;
     }
 }

@@ -18,7 +18,7 @@ stonecutter {
     centralScript = "build.gradle"
     shared {
         vers("1.21.7",    "1.21.7")
-        vers("1.21.9", "1.21.9")
+        vers("1.21.11", "1.21.11")
     }
     create(rootProject as Map<String, ?>)
 }

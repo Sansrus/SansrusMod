@@ -16,6 +16,7 @@
     "cyrilliccommands.ChatInputSuggestorMixin",
     "cyrilliccommands.ChatScreenMixin",
     "deathlog.InventoryScreenMixin",
+    "elytrafeature.CapeFeatureRendererMixin",
     "elytrafeature.ElytraFeatureRendererMixin",
     "highlight.MatchingSlotHighlightMixin",
     "nauseafix.NauseaOverlayFixMixin"
