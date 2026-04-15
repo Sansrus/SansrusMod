@@ -12,14 +12,8 @@
   "sansrusmod.config.category.commands": "Commands",
   "sansrusmod.config.category.commands.tooltip": "Chat command input settings",
   
-  "sansrusmod.config.disableInvisibility": "Disable player invisibility",
-  "sansrusmod.config.disableInvisibility.tooltip": "Players with invisibility effect will still be visible",
-  
   "sansrusmod.config.deathWaypoint": "Death waypoints (Xaero)",
   "sansrusmod.config.deathWaypoint.tooltip": "After death, a clickable message appears in chat to create a waypoint",
-  
-  "sansrusmod.config.autoRespawn": "Automatic respawn",
-  "sansrusmod.config.autoRespawn.tooltip": "Player automatically respawns immediately after death",
   
   "sansrusmod.config.disableRmbCooldown": "Disable RMB cooldown",
   "sansrusmod.config.disableRmbCooldown.tooltip": "Removes internal RMB cooldown when held for more than 20 ticks",
@@ -40,13 +34,13 @@
   "sansrusmod.config.copyChatMessage.tooltip": "Shift + click on message copies its text to clipboard",
   
   "sansrusmod.config.cyrillicCommands": "Cyrillic command input",
-  "sansrusmod.config.cyrillicCommands.tooltip": "Allows typing commands in Cyrillic layout - they will be automatically converted to Latin",
+  "sansrusmod.config.cyrillicCommands.tooltip": "Allows typing commands in Russian layout - they are automatically converted to Latin",
   
   "sansrusmod.config.deathLog": "Save inventory snapshot on death",
-  "sansrusmod.config.deathLog.tooltip": "Saves date, time, and full inventory at the moment of player death if inventory had items",
+  "sansrusmod.config.deathLog.tooltip": "Saves date, time, and full inventory at the moment of player death if there were items in inventory",
   
   "sansrusmod.config.tooltipMap": "Map tooltip",
-  "sansrusmod.config.tooltipMap.tooltip": "Shows the map in tooltip without needing to hold it",
+  "sansrusmod.config.tooltipMap.tooltip": "Shows the map itself in tooltip, without needing to hold it",
   
   "sansrusmod.config.matchingSlotHighlight": "Stack highlighting",
   "sansrusmod.config.matchingSlotHighlight.tooltip": "Highlights slots with identical items",
@@ -69,8 +63,8 @@
   "sansrusmod.config.elytraFeature": "Elytra render on chestplate",
   "sansrusmod.config.elytraFeature.tooltip": "Displays elytra on chestplate if it has glider tag",
   
-  "sansrusmod.config.disableNauseaOverlay": "Disable nausea overlay",
-  "sansrusmod.config.disableNauseaOverlay.tooltip": "Disables nausea overlay rendering. USE IF BLACK SCREEN APPEARS WITH NAUSEA EFFECT",
+  "sansrusmod.config.disableNauseaOverlay": "Disable nausea vignette",
+  "sansrusmod.config.disableNauseaOverlay.tooltip": "Removes nausea vignette display. USE IN CASE OF BLACK SCREEN WITH EFFECT",
   
   "sansrusmod.config.ctrlDropAll": "Drop all items with Ctrl",
   "sansrusmod.config.ctrlDropAll.tooltip": "Hold Ctrl while dropping an item to drop all items of that type from inventory",

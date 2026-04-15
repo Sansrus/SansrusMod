@@ -32,12 +32,10 @@ public class ArmorBarHudMixin {
             EquipmentSlot.CHEST, EquipmentSlot.HEAD
     };
 
-    // 8 тиков = 0.4с анимация
     @Unique private static final float ANIM_TICKS = 8f;
     @Unique private static final int SLIDE_OFFSET = 26;
     @Unique private static final int LOW_DUR = 20;
 
-    // Предыдущий стейт брони для детекции изменений
     @Unique private final ItemStack[] sansrus$prev = {
             ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
     };
@@ -50,36 +48,30 @@ public class ArmorBarHudMixin {
                                         RenderTickCounter tickCounter,
                                         CallbackInfo ci) {
         int displayMode = SansrusModClient.config.armorbarDisplay;
-        if (displayMode == 0) return; // Выкл
+        if (displayMode == 0) return;
 
         MinecraftClient client = MinecraftClient.getInstance();
         ClientPlayerEntity player = client.player;
         if (player == null) return;
 
-        // ── Режим "Всегда" (статичный) ────────────────────────────
         if (displayMode == 21) {
             sansrus$renderStatic(context, client, player);
             return;
         }
 
-        // ── Анимированный режим (1-20 секунд) ─────────────────────
-        float showTicks = displayMode * 20f; // конвертируем секунды в тики
+        float showTicks = displayMode * 20f;
         float dt = tickCounter.getDynamicDeltaTicks();
 
-        // 1. Детектируем изменения брони
         if (sansrus$checkAndSync(player)) {
             sansrus$showTimer = showTicks;
         }
 
-        // 2. Проверяем критическую прочность
         boolean hasCritical = sansrus$hasCritical(player);
 
-        // 3. Таймер не убывает если есть критическая броня
         if (!hasCritical) {
             sansrus$showTimer = Math.max(0f, sansrus$showTimer - dt);
         }
 
-        // 4. Плавно двигаем прогресс к цели
         float target = (hasCritical || sansrus$showTimer > 0f) ? 1f : 0f;
         float clampedDt = Math.min(dt, 0.5f);
         float step = clampedDt / ANIM_TICKS;
@@ -95,20 +87,17 @@ public class ArmorBarHudMixin {
 
         if (sansrus$slideProgress <= 0f) return;
 
-        // 5. Рендер со смещением: slideProgress=0 → ниже экрана, 1 → нормальная позиция
         int screenW = context.getScaledWindowWidth();
         int screenH = context.getScaledWindowHeight();
         int hotbarLeft = screenW / 2 - 91;
         int baseX = hotbarLeft - 29 - 29;
 
-        // Ножницы: не рисуем ниже хотбара
         context.enableScissor(0, screenH - SLIDE_OFFSET - 22, screenW, screenH);
 
         for (int i = 0; i < ARMOR_SLOTS.length; i++) {
             ItemStack stack = player.getEquippedStack(ARMOR_SLOTS[i]);
             if (stack.isEmpty()) continue;
 
-            // Критический слот — всегда на финальной позиции, не анимируется вниз
             boolean isCritical = stack.isDamageable()
                     && stack.getMaxDamage() - stack.getDamage() <= LOW_DUR;
 
@@ -148,7 +137,6 @@ public class ArmorBarHudMixin {
         }
     }
 
-    /** Сравнивает текущую броню с предыдущей, обновляет кэш. Возвращает true при изменении. */
     @Unique
     private boolean sansrus$checkAndSync(ClientPlayerEntity player) {
         boolean changed = false;
@@ -165,7 +153,6 @@ public class ArmorBarHudMixin {
         return changed;
     }
 
-    /** Возвращает true если хотя бы один надетый предмет брони имеет прочность ≤ LOW_DUR. */
     @Unique
     private boolean sansrus$hasCritical(ClientPlayerEntity player) {
         for (EquipmentSlot slot : ARMOR_SLOTS) {

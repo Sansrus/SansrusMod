@@ -102,7 +102,6 @@ public abstract class ItemStackTooltipMixin {
 
     @Unique
     private List<Text> formatSpecificComponent(ComponentType<?> type, Object value) {
-        // Игнорируем эти компоненты
         if (type == DataComponentTypes.TOOLTIP_STYLE ||
                 type == DataComponentTypes.CONTAINER ||
                 type == DataComponentTypes.BUNDLE_CONTENTS ||
@@ -627,11 +626,9 @@ public abstract class ItemStackTooltipMixin {
                 MutableText line = Text.literal("");
 
                 try {
-                    // Проверяем тип эффекта
                     String className = effect.getClass().getSimpleName();
 
                     if (className.contains("ApplyStatusEffects")) {
-                        // Пытаемся получить эффекты через рефлексию или toString
                         String str = effect.toString();
 
                         if (str.contains("effects=[") || str.contains("effects={")) {
@@ -653,7 +650,6 @@ public abstract class ItemStackTooltipMixin {
                 }
             }
 
-            // Объединяем все в одну строку
             if (resultList.isEmpty()) {
                 return java.util.Collections.singletonList(Text.literal("protection").formatted(Formatting.GREEN));
             }
@@ -829,7 +825,6 @@ public abstract class ItemStackTooltipMixin {
         MutableText result = Text.literal("");
         boolean first = true;
 
-        // Проверяем каждую сторону
         if (decorations.front().isPresent()) {
             if (!first) result.append(Text.literal(", ").formatted(Formatting.DARK_GRAY));
             first = false;

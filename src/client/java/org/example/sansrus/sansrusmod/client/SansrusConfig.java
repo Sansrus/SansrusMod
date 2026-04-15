@@ -75,20 +75,13 @@ public class SansrusConfig {
 
     public Screen createScreen(Screen parent) {
 
-        // Проверка ника игрока
         MinecraftClient client = MinecraftClient.getInstance();
         boolean isAllowedPlayer = false;
         if (client.player != null) {
             String playerName = client.player.getName().getString();
             isAllowedPlayer = playerName.equals("Sansrus") || playerName.equals("EN403");
         }
-        
-        // Проверка наличия Xaero's Minimap
         boolean hasXaero = SansrusModClient.isXaeroMinimapLoaded;
-
-        // ═══════════════════════════════════════════════
-        //  Создаём опции ОДИН РАЗ
-        // ═══════════════════════════════════════════════
 
         Option<Boolean> optDisableInvisibility = bool(
                 "sansrusmod.config.disableInvisibility",
@@ -194,15 +187,10 @@ public class SansrusConfig {
                 "sansrusmod.config.ctrlDropAll.tooltip",
                 true, () -> ctrlDropAll, v -> ctrlDropAll = v);
 
-        // ═══════════════════════════════════════════════
-        //  Строим экран, переиспользуя те же объекты
-        // ═══════════════════════════════════════════════
-
         ConfigCategory.Builder mainCategoryBuilder = ConfigCategory.createBuilder()
                 .name(Text.translatable("sansrusmod.config.category.main"))
                 .tooltip(Text.translatable("sansrusmod.config.category.main.tooltip"));
 
-        // Добавляем опции только для разрешенных игроков
         if (isAllowedPlayer) {
             mainCategoryBuilder.option(optDisableInvisibility);
         }
@@ -236,19 +224,12 @@ public class SansrusConfig {
 
         return YetAnotherConfigLib.createBuilder()
                 .title(Text.translatable("sansrusmod.config.title"))
-
-                // ─── Основное ────────────────────────────────────────────────
                 .category(mainCategoryBuilder.build())
 
                 .save(this::save)
                 .build()
                 .generateScreen(parent);
     }
-
-
-    // ═══════════════════════════════════════════════
-    //  УТИЛИТА
-    // ═══════════════════════════════════════════════
 
     private static Option<Boolean> bool(
             String name, String desc, boolean def,

@@ -14,8 +14,6 @@ public class DisableRmbCooldownMixin {
 
     @Shadow
     private int itemUseCooldown;
-
-    // Счетчик тиков удержания ПКМ
     @Unique
     private int rightClickHoldTicks = 0;
 
@@ -24,17 +22,12 @@ public class DisableRmbCooldownMixin {
         if (!SansrusModClient.config.disableRmbCooldown) return;
         MinecraftClient client = (MinecraftClient) (Object) this;
 
-        // Проверяем, зажата ли правая кнопка мыши через options
         if (client.options.useKey.isPressed()) {
             rightClickHoldTicks++;
-
-            // Если ПКМ зажата больше 20 тиков (1 секунда)
             if (rightClickHoldTicks > 20) {
-                // Обнуляем задержку использования предмета
                 itemUseCooldown = 0;
             }
         } else {
-            // Сбрасываем счетчик, если кнопка отпущена
             rightClickHoldTicks = 0;
         }
     }

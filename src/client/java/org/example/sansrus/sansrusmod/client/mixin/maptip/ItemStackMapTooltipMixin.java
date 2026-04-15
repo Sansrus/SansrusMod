@@ -22,8 +22,6 @@ public class ItemStackMapTooltipMixin {
     @Inject(method = "getTooltipData", at = @At("HEAD"), cancellable = true)
     private void sansrus$injectMapPreview(CallbackInfoReturnable<Optional<TooltipData>> cir) {
         ItemStack self = (ItemStack) (Object) this;
-
-        // Проверяем, что предмет — это карта
         if (!(self.getItem() instanceof FilledMapItem)) return;
         if (!SansrusModClient.config.tooltipmap) return;
 

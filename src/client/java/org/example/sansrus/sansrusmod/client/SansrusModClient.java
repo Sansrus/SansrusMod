@@ -7,16 +7,13 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketCallbacks;
 import net.minecraft.network.packet.c2s.play.ClientStatusC2SPacket;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -42,15 +39,6 @@ import xaero.hud.minimap.world.container.MinimapWorldContainer;
 import xaero.hud.path.XaeroPath;
 
 public class SansrusModClient implements ClientModInitializer {
-
-    private static BlockPos pendingDeathPos = null;
-    private static String pendingDeathDim = null;
-    private static boolean hasPendingDeath = false;
-
-    private static ClientPlayerEntity lastPlayer = null;
-    private static float lastHealth = 20.0f;
-
-    private ItemStack[] cachedInventory = new ItemStack[41];
     public static SansrusConfig config;
     public static boolean isXaeroMinimapLoaded = false;
 

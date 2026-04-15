@@ -25,7 +25,7 @@
   "sansrusmod.config.disableRmbCooldown.tooltip": "Снимает внутренний кулдаун ПКМ при зажатии дольше 20 тиков",
   
   "sansrusmod.config.itemTooltipComponents": "Tooltip компонентов предмета",
-  "sansrusmod.config.itemTooltipComponents.tooltip": "Отображает компоненты предмета в его тултипе",
+  "sansrusmod.config.itemTooltipComponents.tooltip": "Отображает компоненты предмета в его тултипе. Для отображения компонентов нужно навести курсор на предмет и нажать правый ALT",
   
   "sansrusmod.config.bookPageHold": "Перелистывание книги зажатием",
   "sansrusmod.config.bookPageHold.tooltip": "Зажмите кнопку перелистывания — страницы будут переключаться автоматически",
@@ -55,7 +55,7 @@
   "sansrusmod.config.chatMessageCounter.tooltip": "Сохраняет одинаковые сообщения из чата в одно сообщение",
   
   "sansrusmod.config.armorbarDisplay": "Слоты брони в хотбаре",
-  "sansrusmod.config.armorbarDisplay.tooltip": "0 — Выкл, 1-20 — время показа в секундах, 21 — Всегда",
+  "sansrusmod.config.armorbarDisplay.tooltip": "Показывает слоты брони рядом с хотбаром. 0 — Выкл, 1-20 — время показа в секундах, 21 — Всегда",
   "sansrusmod.config.armorbarDisplay.off": "Выкл",
   "sansrusmod.config.armorbarDisplay.always": "Всегда",
   "sansrusmod.config.armorbarDisplay.seconds": "%d сек",
@@ -64,16 +64,13 @@
   "sansrusmod.config.coordParser.tooltip": "Парсит координаты из чата и по клику создает метку Xaero",
   
   "sansrusmod.config.protectVillage": "Защита жителей",
-  "sansrusmod.config.protectVillage.tooltip": "Не дает игроку случайно атаковать жителей",
+  "sansrusmod.config.protectVillage.tooltip": "Не дает игроку случайно атаковать жителей. Ударить жителя можно только ударив его в режиме подкрадывания",
   
   "sansrusmod.config.elytraFeature": "Рендер элитр на нагруднике",
-  "sansrusmod.config.elytraFeature.tooltip": "Отображает элитры на нагружнике, если на нем есть тег glider",
+  "sansrusmod.config.elytraFeature.tooltip": "Отображает элитры на нагруднике, если на нем есть тег glider",
   
   "sansrusmod.config.disableNauseaOverlay": "Отмена виньетки укачивания",
-  "sansrusmod.config.disableNauseaOverlay.tooltip": "Убирает отображение виньетки укачивания. ПРИМЕНЯТЬ В СЛУЧАЕ ЧЕРНОГО ЭКРАНА ПРИ ЭФФЕКТЕ",
-  
-  "sansrusmod.config.ctrlDropAll": "Выброс всех предметов с Ctrl",
-  "sansrusmod.config.ctrlDropAll.tooltip": "Удерживайте Ctrl при выбросе предмета, чтобы выбросить все предметы этого типа из инвентаря",
+  "sansrusmod.config.disableNauseaOverlay.tooltip": "Убирает отображение виньетки укачивания. ПРИМЕНЯТЬ В СЛУЧАЕ ЧЕРНОГО ЭКРАНА ПРИ ЭФФЕКТЕ ТОШНОТЫ",
   
   "sansrusmod.message.deathCoords": "Координаты смерти: ",
   "sansrusmod.message.deathCoords.hover": "Нажмите, чтобы создать точку смерти",

@@ -43,7 +43,6 @@ public class DeathHistoryManager {
     }
 
     public static void saveSnapshot(ItemStack[] inventoryCache) {
-        // Проверяем, есть ли хоть один непустой предмет в кэше
         boolean hasItems = false;
         for (ItemStack stack : inventoryCache) {
             if (stack != null && !stack.isEmpty()) {
@@ -68,7 +67,6 @@ public class DeathHistoryManager {
         snapshotNbt.putString("Time", timeStr);
 
         NbtList itemsNbt = new NbtList();
-        int itemCount = 0;
 
         for (int i = 0; i < inventoryCache.length; i++) {
             ItemStack stack = inventoryCache[i];
@@ -81,7 +79,6 @@ public class DeathHistoryManager {
                         itemsNbt.add(itemCompound);
                     }
                 });
-                itemCount++;
             }
         }
 
@@ -139,7 +136,6 @@ public class DeathHistoryManager {
         public DeathSnapshot(NbtCompound nbt) {
             this.rawNbt = nbt;
 
-            // ИСПРАВЛЕНО: .orElse("") вместо String.valueOf(Optional)
             this.time = nbt.getString("Time").orElse("неизвестно");
 
             for (int i = 0; i < inventory.length; i++) {

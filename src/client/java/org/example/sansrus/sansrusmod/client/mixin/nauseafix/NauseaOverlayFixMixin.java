@@ -13,7 +13,6 @@ public class NauseaOverlayFixMixin {
     
     @Inject(method = "renderNauseaOverlay", at = @At("HEAD"), cancellable = true)
     private void cancelNauseaOverlay(DrawContext context, float nauseaStrength, CallbackInfo ci) {
-        // Отменяем рендер nausea overlay если включен флаг в конфиге
         if (SansrusModClient.config.disableNauseaOverlay) {
             ci.cancel();
         }

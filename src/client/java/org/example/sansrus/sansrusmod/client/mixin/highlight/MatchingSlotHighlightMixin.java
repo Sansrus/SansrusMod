@@ -27,19 +27,15 @@ public abstract class MatchingSlotHighlightMixin {
         HandledScreen<?> self = (HandledScreen<?>) (Object) this;
 
         for (Slot slot : self.getScreenHandler().slots) {
-            // Пропускаем сам слот под курсором
             if (slot == focusedSlot) continue;
 
             ItemStack candidate = slot.getStack();
             if (candidate.isEmpty()) continue;
-
-            // Сравниваем только по типу предмета (без NBT/компонентов)
             if (candidate.getItem() != hovered.getItem()) continue;
 
             int slotX = this.x + slot.x;
             int slotY = this.y + slot.y;
 
-            // Полупрозрачная зелёная подсветка (16x16 — размер слота)
             context.fill(slotX, slotY, slotX + 16, slotY + 16, 0x6000FF00);
         }
     }

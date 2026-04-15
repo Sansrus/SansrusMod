@@ -19,7 +19,6 @@ public class MapPreviewTooltipComponent implements TooltipComponent {
 
     private static final int SIZE = 128;
 
-    // NativeImageBackedTexture — конкретная реализация интерфейса DynamicTexture
     private static final Map<Integer, NativeImageBackedTexture> textureCache = new HashMap<>();
     private static final Map<Integer, Identifier> idCache = new HashMap<>();
 
@@ -42,12 +41,10 @@ public class MapPreviewTooltipComponent implements TooltipComponent {
         Identifier texId = getOrUpdateTexture();
         if (texId == null) return;
 
-        // Рамка в стиле ванильной карты
-        context.fill(x,     y,     x + SIZE + 6, y + SIZE + 6, 0xFF594020);
+        context.fill(x, y, x + SIZE + 6, y + SIZE + 6, 0xFF594020);
         context.fill(x + 1, y + 1, x + SIZE + 5, y + SIZE + 5, 0xFF7A5C30);
         context.fill(x + 2, y + 2, x + SIZE + 4, y + SIZE + 4, 0xFF594020);
 
-        // Содержимое карты
         context.drawTexture(RenderPipelines.GUI_TEXTURED, texId,
                 x + 3, y + 3, 0, 0, SIZE, SIZE, SIZE, SIZE);
     }
@@ -61,14 +58,12 @@ public class MapPreviewTooltipComponent implements TooltipComponent {
         if (texture == null) {
             NativeImage image = new NativeImage(NativeImage.Format.RGBA, SIZE, SIZE, false);
             fillImage(image);
-            // Конструктор: Supplier<String> nameSupplier, NativeImage image
             texture = new NativeImageBackedTexture(() -> "sansrusmod:map_preview/" + id, image);
             Identifier texId = Identifier.of("sansrusmod", "map_preview/" + id);
-            mc.getTextureManager().registerTexture(texId, texture); // AbstractTexture — принимается ✓
+            mc.getTextureManager().registerTexture(texId, texture);
             textureCache.put(id, texture);
             idCache.put(id, texId);
         } else {
-            // Обновляем если карта изменилась
             NativeImage image = texture.getImage();
             if (image != null) {
                 fillImage(image);

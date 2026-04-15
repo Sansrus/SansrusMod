@@ -302,7 +302,7 @@ public class DeathHistoryScreen extends Screen {
 
                 int color = (0xFF << 24) | (r << 16) | (g << 8) | b;
                 image.setRGB(px, sh - 1 - py, color);
-                
+
                 if (color != 0) nonZeroPixels++;
                 if (color == 0xFF000000) blackPixels++;
                 if (a == 0) transparentPixels++;
@@ -323,7 +323,6 @@ public class DeathHistoryScreen extends Screen {
         }
     }
 
-    // Вспомогательный класс для передачи изображения в буфер обмена
     private static class ImageSelection implements Transferable {
         private final Image image;
 

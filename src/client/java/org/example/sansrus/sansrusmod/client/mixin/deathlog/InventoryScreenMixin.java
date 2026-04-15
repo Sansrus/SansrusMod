@@ -41,7 +41,6 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
     private void sansrus$addDeathHistoryButton(CallbackInfo ci) {
         if (!SansrusModClient.config.deathLogbool) return;
 
-        // Удаляем старую кнопку, если она существует
         if (sansrus$deathHistoryButton != null) {
             this.remove(sansrus$deathHistoryButton);
         }
@@ -69,7 +68,6 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
         if (!SansrusModClient.config.deathLogbool) return;
         if (sansrus$deathHistoryButton == null) return;
 
-        // Обновляем позицию кнопки после переключения книги рецептов
         int xPos = this.x + 104 + 22;
         int yPos = this.height / 2 - 22;
         sansrus$deathHistoryButton.setPosition(xPos, yPos);

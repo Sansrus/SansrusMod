@@ -52,7 +52,6 @@ public class CoordParser {
         tryPattern(PLAIN_XYZ,   text, results, true);
         tryPattern(PLAIN_XZ,    text, results, false);
 
-        // Убираем пересечения: оставляем только неперекрывающиеся совпадения
         results.removeIf(a -> results.stream().anyMatch(b ->
                 b != a && b.start <= a.start && b.end >= a.end && (b.hasY || !a.hasY)
         ));
@@ -65,19 +64,15 @@ public class CoordParser {
         Matcher m = pattern.matcher(text);
         while (m.find()) {
             try {
-                // Исходная строка чтобы проверить допустимые диапазоны
                 int g1 = Integer.parseInt(m.group(1).replaceAll("[^0-9]", ""));
                 int g2 = Integer.parseInt(m.group(2).replaceAll("[^0-9]", ""));
 
-                // Фильтр: исключаем явно "нехотябы-на-координаты" числа
-                // (например версии 1.21.7, временные метки 23:45, etc.)
                 boolean firstIsCoord  = m.group(1).contains("-") || isCoordRange(g1);
                 boolean secondIsCoord = m.group(2).contains("-") || isCoordRange(g2);
                 if (!firstIsCoord || !secondIsCoord) continue;
 
                 int x, y, z;
                 if (hasY && m.groupCount() >= 3) {
-                    int g3 = Integer.parseInt(m.group(3).replaceAll("[^0-9]", ""));
                     x = parseGroupSign(m, 1);
                     y = parseGroupSign(m, 2);
                     z = parseGroupSign(m, 3);
@@ -95,14 +90,12 @@ public class CoordParser {
     private static int parseGroupSign(Matcher m, int group) {
         String full = m.group(0);
         String val  = m.group(group);
-        // Найти позицию числа в полной строке и проверить минус перед ним
         int pos = full.indexOf(val);
         boolean negative = pos > 0 && full.charAt(pos - 1) == '-';
         int num = Integer.parseInt(val.replaceAll("[^0-9]", ""));
         return negative ? -num : num;
     }
 
-    // Координаты Minecraft обычно в диапазоне [-30000000; 30000000]
     private static boolean isCoordRange(int n) {
         return n > 0 && n <= 60_000_000;
     }
