@@ -7,7 +7,7 @@
   "authors": [],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/sansrusmod/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
