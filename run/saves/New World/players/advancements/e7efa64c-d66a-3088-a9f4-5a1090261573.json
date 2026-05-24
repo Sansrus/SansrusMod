@@ -1,0 +1,35 @@
+{
+  "minecraft:recipes/decorations/smoker": {
+    "criteria": {
+      "has_furnace": "2026-05-24 20:15:36 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2026-05-24 20:15:36 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/map_cloning": {
+    "criteria": {
+      "has_filled_map": "2026-05-24 20:15:46 +0300"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:old_growth_birch_forest": "2026-05-24 20:15:37 +0300",
+      "minecraft:birch_forest": "2026-05-24 20:15:58 +0300",
+      "minecraft:frozen_peaks": "2026-05-24 20:16:02 +0300"
+    },
+    "done": false
+  },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2026-05-24 20:15:36 +0300"
+    },
+    "done": true
+  },
+  "DataVersion": 4790
+}

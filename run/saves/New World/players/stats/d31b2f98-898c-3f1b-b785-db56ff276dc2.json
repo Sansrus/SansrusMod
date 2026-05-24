@@ -1,0 +1,27 @@
+{
+  "stats": {
+    "minecraft:picked_up": {
+      "minecraft:writable_book": 1,
+      "minecraft:diamond": 1,
+      "minecraft:map": 1
+    },
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 910,
+      "minecraft:time_since_rest": 18165,
+      "minecraft:walk_one_cm": 674,
+      "minecraft:total_world_time": 18228,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 1471,
+      "minecraft:play_time": 18165,
+      "minecraft:jump": 12,
+      "minecraft:time_since_death": 18165,
+      "minecraft:drop": 7
+    },
+    "minecraft:dropped": {
+      "minecraft:map": 2,
+      "minecraft:writable_book": 2,
+      "minecraft:diamond": 3
+    }
+  },
+  "DataVersion": 4790
+}

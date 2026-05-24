@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "minecraft:dropped": {
+      "minecraft:birch_leaves": 1
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 2545,
+      "minecraft:walk_one_cm": 2548,
+      "minecraft:leave_game": 1,
+      "minecraft:damage_taken": 220,
+      "minecraft:play_time": 3899,
+      "minecraft:jump": 10,
+      "minecraft:time_since_death": 2523,
+      "minecraft:drop": 1,
+      "minecraft:sprint_one_cm": 1,
+      "minecraft:fall_one_cm": 2548,
+      "minecraft:total_world_time": 4807,
+      "minecraft:fly_one_cm": 715,
+      "minecraft:deaths": 1
+    },
+    "minecraft:used": {
+      "minecraft:birch_leaves": 10
+    }
+  },
+  "DataVersion": 4790
+}

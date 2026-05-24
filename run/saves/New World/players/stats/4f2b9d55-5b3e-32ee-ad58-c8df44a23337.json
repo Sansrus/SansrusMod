@@ -1,0 +1,20 @@
+{
+  "stats": {
+    "minecraft:dropped": {
+      "minecraft:filled_map": 1
+    },
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 21,
+      "minecraft:time_since_rest": 11121,
+      "minecraft:walk_one_cm": 44,
+      "minecraft:total_world_time": 11219,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 6607,
+      "minecraft:play_time": 11121,
+      "minecraft:jump": 5,
+      "minecraft:time_since_death": 11121,
+      "minecraft:drop": 1
+    }
+  },
+  "DataVersion": 4790
+}

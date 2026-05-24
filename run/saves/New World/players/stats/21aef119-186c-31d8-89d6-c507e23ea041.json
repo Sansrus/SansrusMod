@@ -1,0 +1,34 @@
+{
+  "stats": {
+    "minecraft:killed": {
+      "minecraft:goat": 1
+    },
+    "minecraft:dropped": {
+      "minecraft:copper_chestplate": 2,
+      "minecraft:fire_charge": 1
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 7414,
+      "minecraft:walk_one_cm": 3145,
+      "minecraft:mob_kills": 1,
+      "minecraft:damage_taken": 30,
+      "minecraft:play_time": 7414,
+      "minecraft:damage_dealt": 120,
+      "minecraft:jump": 36,
+      "minecraft:time_since_death": 7414,
+      "minecraft:drop": 3,
+      "minecraft:sprint_one_cm": 4041,
+      "minecraft:fall_one_cm": 1100,
+      "minecraft:total_world_time": 8822,
+      "minecraft:fly_one_cm": 3927,
+      "minecraft:crouch_one_cm": 189,
+      "minecraft:sneak_time": 33
+    },
+    "minecraft:used": {
+      "minecraft:copper_chestplate": 1,
+      "minecraft:milk_bucket": 1,
+      "minecraft:diamond_chestplate": 1
+    }
+  },
+  "DataVersion": 4790
+}

@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:interact_with_crafting_table": 1,
+      "minecraft:time_since_rest": 2593,
+      "minecraft:walk_one_cm": 1374,
+      "minecraft:leave_game": 1,
+      "minecraft:play_time": 2593,
+      "minecraft:jump": 8,
+      "minecraft:time_since_death": 2593,
+      "minecraft:interact_with_furnace": 1,
+      "minecraft:sprint_one_cm": 228,
+      "minecraft:open_chest": 1,
+      "minecraft:fall_one_cm": 225,
+      "minecraft:total_world_time": 2970,
+      "minecraft:fly_one_cm": 1257
+    },
+    "minecraft:used": {
+      "minecraft:crafting_table": 1,
+      "minecraft:chest": 1,
+      "minecraft:furnace": 1,
+      "minecraft:map": 2
+    }
+  },
+  "DataVersion": 4790
+}

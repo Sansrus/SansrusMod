@@ -1,0 +1,38 @@
+{
+  "stats": {
+    "minecraft:dropped": {
+      "minecraft:birch_leaves": 1,
+      "minecraft:iron_chestplate": 2,
+      "minecraft:elytra": 1,
+      "minecraft:written_book": 1
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 14115,
+      "minecraft:walk_one_cm": 3929,
+      "minecraft:damage_taken": 25,
+      "minecraft:play_time": 14115,
+      "minecraft:jump": 21,
+      "minecraft:time_since_death": 14115,
+      "minecraft:aviate_one_cm": 32783,
+      "minecraft:drop": 5,
+      "minecraft:sprint_one_cm": 1008,
+      "minecraft:fall_one_cm": 650,
+      "minecraft:total_world_time": 18545,
+      "minecraft:fly_one_cm": 31368,
+      "minecraft:crouch_one_cm": 91,
+      "minecraft:sneak_time": 42
+    },
+    "minecraft:used": {
+      "minecraft:elytra": 1,
+      "minecraft:villager_spawn_egg": 1,
+      "minecraft:writable_book": 2,
+      "minecraft:iron_chestplate": 1,
+      "minecraft:map": 1,
+      "minecraft:written_book": 1
+    },
+    "minecraft:picked_up": {
+      "minecraft:birch_leaves": 1
+    }
+  },
+  "DataVersion": 4790
+}

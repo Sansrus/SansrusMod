@@ -1,0 +1,32 @@
+{
+  "stats": {
+    "minecraft:killed_by": {
+      "minecraft:creeper": 1
+    },
+    "minecraft:picked_up": {
+      "minecraft:dirt": 20,
+      "minecraft:stick": 1,
+      "minecraft:birch_log": 1,
+      "minecraft:wildflowers": 3
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 1134,
+      "minecraft:walk_one_cm": 1456,
+      "minecraft:leave_game": 1,
+      "minecraft:damage_taken": 691,
+      "minecraft:play_time": 6012,
+      "minecraft:damage_dealt": 10,
+      "minecraft:jump": 11,
+      "minecraft:time_since_death": 1112,
+      "minecraft:sprint_one_cm": 667,
+      "minecraft:fall_one_cm": 3798,
+      "minecraft:total_world_time": 13285,
+      "minecraft:fly_one_cm": 386,
+      "minecraft:deaths": 2
+    },
+    "minecraft:used": {
+      "minecraft:creeper_spawn_egg": 1
+    }
+  },
+  "DataVersion": 4790
+}

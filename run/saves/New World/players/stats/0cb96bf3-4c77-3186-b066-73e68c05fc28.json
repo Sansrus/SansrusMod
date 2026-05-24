@@ -1,0 +1,25 @@
+{
+  "stats": {
+    "minecraft:dropped": {
+      "minecraft:jungle_stairs": 1
+    },
+    "minecraft:used": {
+      "minecraft:jungle_stairs": 15
+    },
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 254,
+      "minecraft:time_since_rest": 272,
+      "minecraft:fall_one_cm": 3089,
+      "minecraft:walk_one_cm": 3693,
+      "minecraft:total_world_time": 1574,
+      "minecraft:fly_one_cm": 43,
+      "minecraft:damage_taken": 270,
+      "minecraft:play_time": 1297,
+      "minecraft:deaths": 1,
+      "minecraft:jump": 6,
+      "minecraft:time_since_death": 248,
+      "minecraft:drop": 1
+    }
+  },
+  "DataVersion": 4790
+}
