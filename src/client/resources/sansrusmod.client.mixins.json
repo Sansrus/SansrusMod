@@ -1,36 +1,33 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.example.sansrus.sansrusmod.client.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "package": "ru.sansrus.sansrusmod.client.mixin",
+  "compatibilityLevel": "JAVA_25",
   "client": [
-    "ChatHudMixin",
+    "ItemStackTooltipMixin",
+    "EntityMixin",
+    "VillagerProtectMixin",
     "DisableRmbCooldownMixin",
     "HandledScreenMixin",
-    "VillagerProtectMixin",
     "armorbar.ArmorBarHudMixin",
     "book.BookEditScreenMixin",
     "book.BookScreenMixin",
+    "chat.ChatComponentAccessor",
+    "chat.ChatCopyMixin",
     "chat.ChatMessageCounterMixin",
     "chatcoord.ChatCoordParserMixin",
     "cyrilliccommands.ChatInputSuggestorMixin",
     "cyrilliccommands.ChatScreenMixin",
+    "deathlog.DeathInventoryCaptureMixin",
     "deathlog.InventoryScreenMixin",
-    "elytrafeature.CapeFeatureRendererMixin",
-    "elytrafeature.ElytraFeatureRendererMixin",
     "highlight.MatchingSlotHighlightMixin",
-    "nauseafix.NauseaOverlayFixMixin"
+    "maptip.ItemStackMapTooltipMixin",
+    "maptip.GuiGraphicsExtractorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-  },
-  "mixins": [
-    "EntityMixin",
-    "ItemStackTooltipMixin",
-    "deathlog.DeathInventoryCaptureMixin",
-    "maptip.ItemStackMapTooltipMixin"
-  ]
+  }
 }
