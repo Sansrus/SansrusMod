@@ -1,69 +1,45 @@
 # SansrusMod
 
+A client-side Minecraft mod that adds various quality-of-life improvements to enhance your gameplay experience.
+
 [Русская версия](README_RU.md)
-
-A client-side Fabric utility mod for Minecraft 26.1. Adds small but useful tweaks.
-
----
 
 ## Features
 
-### Inventory & UI
-- **Map preview in tooltip** — hover a filled map to see its 128×128 preview without holding it.
-- **Map preview in slots** — tiny 16×16 map overlay rendered directly on map icons in inventory slots.
-- **Shift-drag items** — hold Shift and drag across slots to quick-move entire stacks.
-- **Matching slot highlight** — highlights all slots containing the same item as the one you're hovering (enchanted books match by enchantment).
-- **Highlight color picker** — full ARGB color picker for the matching-slot highlight.
-- **Armor bar on HUD** — animated armor slots (boots → helmet) displayed to the left of the hotbar. Configurable duration or always-on. Armor with less than 20 durability always shown.
-- **Book page holding** — hold the mouse button to continuously flip book pages. Scroll speed is adjustable.
-- **Death history screen** — a dedicated GUI showing snapshots of your inventory at the moment of death. Navigate between deaths, copy inventory as image (Ctrl+C), delete entries (Delete).
+### Death Management
+- **Death Waypoints** - Automatically creates a clickable message in chat with death coordinates. Click to create a waypoint in Xaero's Minimap
+- **Death History** - Saves a snapshot of your inventory at the moment of death, including date and time
 
-### Chat & Commands
-- **Cyrillic command input** — type commands in Russian layout; they are automatically converted to Latin. Smart parsing preserves Cyrillic in string arguments (messages, names).
-- **Copy chat messages** — Shift+click any chat message to copy its text.
-- **Chat anti-spam** — merges consecutive identical messages into one with a `*count` suffix.
-- **Coordinate parser** — detects coordinates in chat (e.g., `100 200 300`, `x=100 z=300`), highlights them, click to create a Xaero waypoint.
+### Inventory & Items
+- **Shift Drag Items** - Hold Shift and drag your mouse over slots to quickly transfer items
+- **Ctrl Drop All** - Hold Ctrl while dropping an item to drop all items of that type from your inventory
+- **Stack Highlighting** - Highlights inventory slots containing the same items
+- **Item Tooltip Components** - Displays item components in tooltips for debugging
 
-### Combat & Survival
-- **Death snapshot** — automatically saves your full inventory with timestamp and server name on death. Persists across restarts.
-- **Death waypoints (Xaero)** — clickable chat message with death coordinates; click to create a skull waypoint.
-- **Villager protection** — prevents accidental villager attacks unless sneaking.
+### Chat Features
+- **Copy Chat Messages** - Shift + click on a chat message to copy it to clipboard
+- **Cyrillic Commands** - Type commands in Russian layout - they automatically convert to Latin
+- **Coordinate Parser** - Parses coordinates from chat and creates Xaero waypoints on click
+- **Anti-spam** - Groups identical chat messages together
 
-### Visual
-- **Item component tooltip** — press Right Alt while hovering an item to see all raw data components (enchantments, attributes, food, potions, trim, etc.) with color formatting.
+### Books
+- **Book Page Hold** - Hold the page turn button to automatically flip through pages
+- **Book Scroll Speed** - Adjustable speed for automatic page turning (1-40)
 
-### Misc
-- **Disable RMB cooldown** — removes the internal use cooldown when RMB is held longer than the set threshold (in ticks).
-- **RMB cooldown threshold** — how many ticks to hold RMB before the cooldown is removed. 0 = disabled immediately.
-- **Book scroll speed** — adjust page-flip rate from 1 (slow) to 40 (fast).
+### UI & Display
+- **Armor Bar Display** - Shows armor slots in hotbar (configurable: off, timed, or always)
+- **Map Tooltip** - Preview maps in their tooltip without needing to hold them
 
----
-
-## Dependencies
-
-- **Fabric API** 0.149.0+26.1.2
-- **YACL** (YetAnotherConfigLib) — config GUI (bundled at build time)
-- **ModMenu** *(optional)* — access settings from the mods list
-- **Xaero's Minimap** *(optional)* — required for death waypoints and coordinate parser
-
----
-
-## Installation
-
-1. Install **Fabric Loader** 0.19.2+ for Minecraft 26.1.
-2. Place the mod `.jar` in your `.minecraft/mods/` folder.
-3. (Optional) Install ModMenu and Xaero's Minimap for full functionality.
-
-Configure the mod via **ModMenu → SansrusMod → Settings**, or edit `config/sansrusmod.json` manually.
-
----
+### Gameplay
+- **Disable RMB Cooldown** - Removes the internal right-click cooldown when holding for more than 20 ticks
+- **Protect Villagers** - Prevents accidentally attacking villagers
+- **Elytra Feature** - Renders elytra on chestplates that have the `glider` tag
+- **Disable Nausea Vignette** - Removes the nausea vignette effect (use if experiencing black screen with nausea effect)
 
 ## Configuration
 
-All features are togglable from the YACL settings screen. Xaero-dependent options are hidden when the minimap is not loaded.
+Access the configuration menu through ModMenu in-game. All features can be individually enabled or disabled.
 
-Default state: most features are **enabled**. Notable exceptions:
-- `matchingSlotHighlight` — off
-- `chatMessageCounter` — off
-- `coordParser` — off
-- `mapSlotPreview` — off
+## License
+
+All Rights Reserved

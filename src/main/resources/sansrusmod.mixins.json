@@ -1,8 +1,8 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "ru.sansrus.sansrusmod.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "package": "org.example.sansrus.sansrusmod.mixin",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
   ],
   "injectors": {
