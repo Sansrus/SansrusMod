@@ -6,3 +6,7 @@ build/
 *.jar
 *.log
 local.properties
+run/
+libs/
+stonecutter.gradle
+net/
