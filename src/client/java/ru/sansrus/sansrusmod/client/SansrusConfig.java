@@ -37,6 +37,7 @@ public class SansrusConfig {
     public int armorbarDisplay          = 5;
     public boolean coordparser          = false;
     public boolean protectVillage       = true;
+    public boolean shadowTrader         = true;
     public int bookScrollSpeed = 10;
     public int highlightColor = 0x6000FF00;
 
@@ -188,6 +189,10 @@ public class SansrusConfig {
                 "sansrusmod.config.protectVillage",
                 "sansrusmod.config.protectVillage.tooltip",
                 true, () -> protectVillage, v -> protectVillage = v);
+        Option<Boolean> optShadowTrader = bool(
+                "sansrusmod.config.shadowTrader",
+                "sansrusmod.config.shadowTrader.tooltip",
+                true, () -> shadowTrader, v -> shadowTrader = v);
 
         Option<Boolean> optMapSlotPreview = bool(
                 "sansrusmod.config.mapSlotPreview",
@@ -226,7 +231,8 @@ public class SansrusConfig {
             mainCategoryBuilder.option(optCoordParsesr);
         }
         mainCategoryBuilder
-                .option(optProtectVillage);
+                .option(optProtectVillage)
+                .option(optShadowTrader);
 
         return YetAnotherConfigLib.createBuilder()
                 .title(Component.translatable("sansrusmod.config.title"))

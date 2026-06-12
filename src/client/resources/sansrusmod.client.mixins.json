@@ -22,7 +22,8 @@
     "deathlog.InventoryScreenMixin",
     "highlight.MatchingSlotHighlightMixin",
     "maptip.ItemStackMapTooltipMixin",
-    "maptip.GuiGraphicsExtractorMixin"
+    "maptip.GuiGraphicsExtractorMixin",
+    "trading.TradeScreenKeepOpenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

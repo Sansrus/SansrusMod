@@ -66,6 +66,9 @@
   "sansrusmod.config.protectVillage": "Villager protection",
   "sansrusmod.config.protectVillage.tooltip": "Prevents player from accidentally attacking villagers",
 
+  "sansrusmod.config.shadowTrader": "Shadow Trader",
+  "sansrusmod.config.shadowTrader.tooltip": "Trade screen stays open when villager unloads, allowing you to continue trading",
+
   "sansrusmod.config.ctrlDropAll": "Drop all items with Ctrl",
   "sansrusmod.config.ctrlDropAll.tooltip": "Hold Ctrl while dropping an item to drop all items of that type from inventory",
   

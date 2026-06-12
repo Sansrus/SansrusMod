@@ -3,7 +3,7 @@
   "id": "sansrusmod",
   "version": "${version}",
   "name": "SansrusMod",
-  "description": " ",
+  "description": "A client mod with all sorts of things for personal convenience",
   "authors": [
     {
       "name": "Sansrus",
@@ -39,7 +39,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
-    "minecraft": "${minecraft_version}",
+    "minecraft": ">=${minecraft_version}",
     "yet_another_config_lib_v3": ">=3.8.0"
   }
 }

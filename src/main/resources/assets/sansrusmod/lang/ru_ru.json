@@ -72,6 +72,9 @@
   "sansrusmod.config.protectVillage": "Защита жителей",
   "sansrusmod.config.protectVillage.tooltip": "Не дает игроку случайно атаковать жителей. Ударить жителя можно только ударив его в режиме подкрадывания",
 
+  "sansrusmod.config.shadowTrader": "Теневая торговля",
+  "sansrusmod.config.shadowTrader.tooltip": "Экран торговли не закрывается при выгрузке жителя, позволяя продолжать торговлю",
+
   "sansrusmod.message.deathCoords": "Координаты смерти: ",
   "sansrusmod.message.deathCoords.hover": "Нажмите, чтобы создать точку смерти",
   "sansrusmod.message.waypointCreated": "Точка смерти создана!",

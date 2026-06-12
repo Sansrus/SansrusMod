@@ -60,6 +60,9 @@
   "sansrusmod.config.protectVillage": "Villager protection",
   "sansrusmod.config.protectVillage.tooltip": "Prevents player from accidentally attacking villagers",
   
+  "sansrusmod.config.shadowTrader": "Shadow Trader",
+  "sansrusmod.config.shadowTrader.tooltip": "Trade screen stays open when villager unloads, allowing you to continue trading",
+  
   "sansrusmod.config.elytraFeature": "Elytra render on chestplate",
   "sansrusmod.config.elytraFeature.tooltip": "Displays elytra on chestplate if it has glider tag",
   
