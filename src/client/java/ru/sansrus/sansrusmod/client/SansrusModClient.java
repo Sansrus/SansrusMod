@@ -1,5 +1,7 @@
 package ru.sansrus.sansrusmod.client;
 
+import com.mojang.brigadier.arguments.DoubleArgumentType;
+import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.api.ClientModInitializer;
@@ -90,6 +92,32 @@ public class SansrusModClient implements ClientModInitializer {
                                                 createCoordWaypoint(x, y, z);
                                                 return 1;
                                             })))));
+
+            dispatcher.register(ClientCommands.literal("sansrusmodlookat")
+                    .then(ClientCommands.argument("pitch", FloatArgumentType.floatArg(-90f, 90f))
+                            .then(ClientCommands.argument("yaw", FloatArgumentType.floatArg(-180f, 180f))
+                                    .executes(context -> {
+                                        float pitch = FloatArgumentType.getFloat(context, "pitch");
+                                        float yaw = FloatArgumentType.getFloat(context, "yaw");
+                                        LocalPlayer player = Minecraft.getInstance().player;
+                                        if (player == null) return 0;
+                                        player.setXRot(pitch);
+                                        player.setYRot(yaw);
+                                        return 1;
+                                    }))));
+
+            dispatcher.register(ClientCommands.literal("sansrusmodposblock")
+                    .then(ClientCommands.argument("x", DoubleArgumentType.doubleArg(0.0, 1.0))
+                            .then(ClientCommands.argument("z", DoubleArgumentType.doubleArg(0.0, 1.0))
+                                    .executes(context -> {
+                                        double x = DoubleArgumentType.getDouble(context, "x");
+                                        double z = DoubleArgumentType.getDouble(context, "z");
+                                        LocalPlayer player = Minecraft.getInstance().player;
+                                        if (player == null) return 0;
+                                        BlockPos blockPos = player.blockPosition();
+                                        player.setPos(blockPos.getX() + x, player.getY(), blockPos.getZ() + z);
+                                        return 1;
+                                    }))));
 
         });
 
