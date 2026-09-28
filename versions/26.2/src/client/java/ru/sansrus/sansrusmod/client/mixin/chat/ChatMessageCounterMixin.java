@@ -2,14 +2,13 @@ package ru.sansrus.sansrusmod.client.mixin.chat;
 
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
+import net.minecraft.client.multiplayer.chat.GuiMessageSource;
 import net.minecraft.client.multiplayer.chat.GuiMessageTag;
 import net.minecraft.ChatFormatting;
 import ru.sansrus.sansrusmod.client.SansrusModClient;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
 import ru.sansrus.sansrusmod.client.chatcoord.ChatPipelineFlags;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -22,9 +21,6 @@ import java.util.List;
 @Mixin(ChatComponent.class)
 public abstract class ChatMessageCounterMixin {
 
-    @Unique
-    private static final Logger LOGGER = LoggerFactory.getLogger("SansrusMod/ChatCounter");
-    
     @Shadow private List<GuiMessage> allMessages;
     @Shadow private List<GuiMessage.Line> trimmedMessages;
 
@@ -33,44 +29,46 @@ public abstract class ChatMessageCounterMixin {
     @Unique private boolean sansrus$injecting   = false;
 
     @Shadow
-    public abstract void addPlayerMessage(Component message, MessageSignature signatureData, GuiMessageTag indicator);
+    private void addMessage(Component message, MessageSignature signatureData,
+                            GuiMessageSource source, GuiMessageTag indicator) {
+        throw new AssertionError();
+    }
 
     @Inject(
-            method = "addPlayerMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V",
+            method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageSource;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V",
             at = @At("HEAD"),
             cancellable = true
     )
     private void sansrus$countDuplicates(Component message, MessageSignature signatureData,
-                                         GuiMessageTag indicator, CallbackInfo ci) {
+                                         GuiMessageSource source, GuiMessageTag indicator,
+                                         CallbackInfo ci) {
         if (!SansrusModClient.config.chatMessageCounter) return;
         if (sansrus$injecting) return;
         if (ChatPipelineFlags.coordReinjecting) return;
+        if (source == GuiMessageSource.SYSTEM_CLIENT) return;
 
         String incoming = message.getString();
 
-        if (incoming.equals(sansrus$lastRawText)) {
-            sansrus$count++;
-
-            if (!allMessages.isEmpty()) {
-                allMessages.remove(0);
-            }
-            if (!trimmedMessages.isEmpty()) {
-                trimmedMessages.remove(0);
-            }
-
-            Component counted = Component.empty()
-                    .copy()
-                    .append(message)
-                    .append(Component.literal(" §7*" + sansrus$count).withStyle(ChatFormatting.GRAY));
-
-            ci.cancel();
-            sansrus$injecting = true;
-            addPlayerMessage(counted, signatureData, indicator);
-            sansrus$injecting = false;
-
-        } else {
+        if (!incoming.equals(sansrus$lastRawText)) {
             sansrus$lastRawText = incoming;
             sansrus$count = 1;
+            return;
         }
+
+        sansrus$count++;
+
+        if (!allMessages.isEmpty()) {
+            GuiMessage previous = allMessages.remove(0);
+            trimmedMessages.removeIf(line -> line.parent() == previous);
+        }
+
+        Component counted = Component.empty()
+                .append(message)
+                .append(Component.literal(" §7*" + sansrus$count).withStyle(ChatFormatting.GRAY));
+
+        ci.cancel();
+        sansrus$injecting = true;
+        addMessage(counted, signatureData, source, indicator);
+        sansrus$injecting = false;
     }
 }

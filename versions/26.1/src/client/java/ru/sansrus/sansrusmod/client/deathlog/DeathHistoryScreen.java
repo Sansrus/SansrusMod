@@ -1,7 +1,6 @@
 package ru.sansrus.sansrusmod.client.deathlog;
 
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Transferable;
@@ -9,13 +8,13 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.nio.ByteBuffer;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.Screenshot;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
@@ -299,48 +298,38 @@ public class DeathHistoryScreen extends Screen {
         int sw = (int) (BG_W * scale);
         int sh = (int) (BG_H * scale);
 
-        int windowHeight = mc.getWindow().getHeight();
-        int glY = windowHeight - sy - sh;
+        Screenshot.takeScreenshot(mc.getMainRenderTarget(), captured -> {
+            try {
+                int cropX = Math.max(0, sx);
+                int cropY = Math.max(0, sy);
+                int cropW = Math.min(sx + sw, captured.getWidth()) - cropX;
+                int cropH = Math.min(sy + sh, captured.getHeight()) - cropY;
 
-        ByteBuffer buf = ByteBuffer.allocateDirect(sw * sh * 4);
-        GL11.glReadPixels(sx, glY, sw, sh,
-                GL11.GL_RGBA,
-                GL11.GL_UNSIGNED_BYTE, buf);
+                if (cropW <= 0 || cropH <= 0) {
+                    return;
+                }
 
-        BufferedImage image = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
+                BufferedImage image = new BufferedImage(cropW, cropH, BufferedImage.TYPE_INT_ARGB);
+                for (int py = 0; py < cropH; py++) {
+                    for (int px = 0; px < cropW; px++) {
+                        image.setRGB(px, py, 0xFF000000 | captured.getPixel(cropX + px, cropY + py));
+                    }
+                }
 
-        int nonZeroPixels = 0;
-        int blackPixels = 0;
-        int transparentPixels = 0;
-        for (int py = 0; py < sh; py++) {
-            for (int px = 0; px < sw; px++) {
-                int i = (py * sw + px) * 4;
-                int r = buf.get(i) & 0xFF;
-                int g = buf.get(i + 1) & 0xFF;
-                int b = buf.get(i + 2) & 0xFF;
-                int a = buf.get(i + 3) & 0xFF;
+                Toolkit.getDefaultToolkit()
+                        .getSystemClipboard()
+                        .setContents(new ImageSelection(image), null);
 
-                int color = (0xFF << 24) | (r << 16) | (g << 8) | b;
-                image.setRGB(px, sh - 1 - py, color);
-
-                if (color != 0) nonZeroPixels++;
-                if (color == 0xFF000000) blackPixels++;
-                if (a == 0) transparentPixels++;
+                if (mc.player != null) {
+                    mc.player.sendOverlayMessage(
+                            Component.translatable("sansrusmod.deathHistory.inventoryCopied").withStyle(ChatFormatting.GREEN));
+                }
+            } catch (Exception e) {
+                DeathHistoryManager.LOGGER.error("Ошибка копирования в буфер обмена: {}", e.getMessage(), e);
+            } finally {
+                captured.close();
             }
-        }
-
-        try {
-            Toolkit.getDefaultToolkit()
-                    .getSystemClipboard()
-                    .setContents(new ImageSelection(image), null);
-
-            if (mc.player != null) {
-                mc.player.sendOverlayMessage(
-                        Component.translatable("sansrusmod.deathHistory.inventoryCopied").withStyle(ChatFormatting.GREEN));
-            }
-        } catch (Exception e) {
-            DeathHistoryManager.LOGGER.error("Ошибка копирования в буфер обмена: {}", e.getMessage(), e);
-        }
+        });
     }
 
     private static class ImageSelection implements Transferable {

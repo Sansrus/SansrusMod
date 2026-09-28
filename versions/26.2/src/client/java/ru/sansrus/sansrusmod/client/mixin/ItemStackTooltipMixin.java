@@ -33,6 +33,7 @@ import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.PotDecorations;
+import net.minecraft.world.level.saveddata.maps.MapId;
 import ru.sansrus.sansrusmod.client.SansrusModClient;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
@@ -88,21 +89,35 @@ public abstract class ItemStackTooltipMixin {
             Identifier id = BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(componentType);
             String shortName = id != null ? id.getPath() : componentType.toString();
 
+            if (value instanceof Unit) {
+                tooltip.add(Component.literal("  ")
+                        .append(Component.literal(shortName).withStyle(ChatFormatting.BLUE)));
+                return;
+            }
+
             List<Component> formattedValues = formatSpecificComponent(componentType, value);
 
             if (formattedValues == null || formattedValues.isEmpty()) {
                 return;
             }
 
+            List<Component> meaningfulValues = formattedValues.stream()
+                    .filter(formatted -> formatted != null && !formatted.getString().isBlank())
+                    .toList();
+
+            if (meaningfulValues.isEmpty()) {
+                return;
+            }
+
             MutableComponent firstLine = Component.literal("  ");
             firstLine.append(Component.literal(shortName).withStyle(ChatFormatting.BLUE));
             firstLine.append(Component.literal(": ").withStyle(ChatFormatting.WHITE));
-            firstLine.append(formattedValues.get(0));
+            firstLine.append(meaningfulValues.get(0));
             tooltip.add(firstLine);
 
-            for (int i = 1; i < formattedValues.size(); i++) {
+            for (int i = 1; i < meaningfulValues.size(); i++) {
                 MutableComponent line = Component.literal("    ");
-                line.append(formattedValues.get(i));
+                line.append(meaningfulValues.get(i));
                 tooltip.add(line);
             }
         });
@@ -149,10 +164,6 @@ public abstract class ItemStackTooltipMixin {
             result = formatDamageResistant((DamageResistant) value);
         } else if (type == DataComponents.ENCHANTMENT_GLINT_OVERRIDE) {
             result = Component.literal(String.valueOf(value)).withStyle(ChatFormatting.LIGHT_PURPLE);
-        } else if (type == DataComponents.INTANGIBLE_PROJECTILE ||
-                type == DataComponents.GLIDER) {
-            result = value instanceof Unit ? Component.literal("true").withStyle(ChatFormatting.GREEN) :
-                    Component.literal(String.valueOf(value)).withStyle(ChatFormatting.GREEN);
         } else if (type == DataComponents.ITEM_MODEL) {
             result = formatIdentifier((Identifier) value);
         } else if (type == DataComponents.WEAPON) {
@@ -217,6 +228,10 @@ public abstract class ItemStackTooltipMixin {
             result = formatHolderId((Holder<?>) value);
         } else if (type == DataComponents.DYE) {
             result = formatDye((DyeColor) value);
+        } else if (type == DataComponents.MAP_ID) {
+            result = formatMapId((MapId) value);
+        } else if (type == DataComponents.MAP_DECORATIONS) {
+            result = formatMapDecorations((MapDecorations) value);
         } else {
             result = formatComponentValue(value);
         }
@@ -787,6 +802,42 @@ public abstract class ItemStackTooltipMixin {
     @Unique
     private Component formatDye(DyeColor dye) {
         return Component.literal(dye.getName()).withStyle(style -> style.withColor(TextColor.fromRgb(dye.getTextColor())));
+    }
+
+    @Unique
+    private Component formatMapId(MapId mapId) {
+        return Component.literal("#" + mapId.id()).withStyle(ChatFormatting.GOLD);
+    }
+
+    @Unique
+    private Component formatMapDecorations(MapDecorations decorations) {
+        if (decorations.decorations().isEmpty()) {
+            return null;
+        }
+
+        MutableComponent result = Component.literal("");
+        boolean first = true;
+
+        for (java.util.Map.Entry<String, MapDecorations.Entry> decoration : decorations.decorations().entrySet()) {
+            if (!first) {
+                result.append(Component.literal(", ").withStyle(ChatFormatting.DARK_GRAY));
+            }
+            first = false;
+
+            MapDecorations.Entry entry = decoration.getValue();
+            result.append(Component.literal(decoration.getKey()).withStyle(ChatFormatting.GRAY));
+
+            Component typeName = formatHolderId(entry.type());
+            if (typeName != null) {
+                result.append(Component.literal("=").withStyle(ChatFormatting.DARK_GRAY));
+                result.append(typeName);
+            }
+
+            result.append(Component.literal(String.format(" (%.0f, %.0f)", entry.x(), entry.z()))
+                    .withStyle(ChatFormatting.GOLD));
+        }
+
+        return result;
     }
 
     @Unique

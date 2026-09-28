@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import ru.sansrus.sansrusmod.client.SansrusModClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,40 +29,40 @@ public class ChatCopyMixin {
 
         ChatComponent chat = client.gui.getChat();
         ChatComponentAccessor accessor = (ChatComponentAccessor) chat;
-        List<GuiMessage> allMessages = accessor.getAllMessages();
-        if (allMessages.isEmpty()) return;
 
         List<GuiMessage.Line> lines = accessor.getTrimmedMessages();
-        int lineHeight = client.font.lineHeight;
-        int linesPerPage = chat.getLinesPerPage();
-        int chatHeight = linesPerPage * lineHeight;
-        int chatWidth = ChatComponent.getWidth(client.getWindow().getGuiScaledWidth());
+        if (lines.isEmpty()) return;
+
+        float scale = client.options.chatScale().get().floatValue();
+        if (scale <= 0f) return;
+
+        int lineHeight = (int) (9.0 * (client.options.chatLineSpacing().get() + 1.0));
+        if (lineHeight <= 0) return;
+
         int screenH = client.getWindow().getGuiScaledHeight();
-        int chatX = 2;
-        int chatAreaBottom = screenH - chatHeight;
-        int inputFieldH = 40;
+        int chatWidth = Mth.ceil(ChatComponent.getWidth(client.options.chatWidth().get()) / scale);
+        int baseY = Mth.floor((screenH - 40) / scale);
 
-        double mx = event.x();
-        double my = event.y();
+        double localX = event.x() / scale - 4.0;
+        double localY = event.y() / scale;
 
-        if (mx >= chatX && mx < chatX + chatWidth && my >= chatAreaBottom && my < screenH - inputFieldH) {
-            int clickedLine = (int) ((screenH - inputFieldH - my - 1) / lineHeight);
-            if (clickedLine >= 0 && clickedLine < lines.size()) {
-                int msgIdx = 0;
-                for (int i = 0; i <= clickedLine; i++) {
-                    if (lines.get(i).endOfEntry()) msgIdx++;
-                }
-                msgIdx = Math.max(0, msgIdx - 1);
-                if (msgIdx < allMessages.size()) {
-                    String text = allMessages.get(msgIdx).content().getString();
-                    client.keyboardHandler.setClipboard(text);
-                    client.player.sendOverlayMessage(
-                            Component.translatable("sansrusmod.chat.messageCopied").withStyle(ChatFormatting.GRAY));
-                    cir.setReturnValue(true);
-                    return;
-                }
-            }
-        }
+        if (localX < -4.0 || localX >= chatWidth + 8.0) return;
 
+        double distFromBottom = baseY - localY;
+        if (distFromBottom <= 0.0) return;
+
+        int row = Mth.ceil(distFromBottom / lineHeight) - 1;
+        int scrollPos = accessor.getChatScrollbarPos();
+        int visibleRows = Math.min(lines.size() - scrollPos, chat.getLinesPerPage());
+        if (row < 0 || row >= visibleRows) return;
+
+        int index = row + scrollPos;
+        if (index < 0 || index >= lines.size()) return;
+
+        String text = lines.get(index).parent().content().getString();
+        client.keyboardHandler.setClipboard(text);
+        client.player.sendOverlayMessage(
+                Component.translatable("sansrusmod.chat.messageCopied").withStyle(ChatFormatting.GRAY));
+        cir.setReturnValue(true);
     }
 }

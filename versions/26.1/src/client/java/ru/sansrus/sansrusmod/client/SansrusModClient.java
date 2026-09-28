@@ -154,7 +154,7 @@ public class SansrusModClient implements ClientModInitializer {
                         //?}
                         DeathHistoryManager.saveSnapshot(inventoryCache);
                         inventoryCache = null;
-                        if (isXaeroMinimapLoaded) sendDeathMessage(client, deathPos, dim);
+                        if (config.deathWaypoint && isXaeroMinimapLoaded) sendDeathMessage(client, deathPos, dim);
                     }
                     wasDeadLastTick = dead;
                     if (!dead) {

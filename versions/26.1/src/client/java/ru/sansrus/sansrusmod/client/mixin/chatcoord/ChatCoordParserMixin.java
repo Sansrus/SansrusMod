@@ -1,6 +1,7 @@
 package ru.sansrus.sansrusmod.client.mixin.chatcoord;
 
 import net.minecraft.client.gui.components.ChatComponent;
+import net.minecraft.client.multiplayer.chat.GuiMessageSource;
 import net.minecraft.client.multiplayer.chat.GuiMessageTag;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
@@ -29,21 +30,26 @@ import java.util.List;
 public abstract class ChatCoordParserMixin {
 
     @Shadow
-    public abstract void addPlayerMessage(Component message, MessageSignature signatureData, GuiMessageTag indicator);
+    private void addMessage(Component message, MessageSignature signatureData,
+                            GuiMessageSource source, GuiMessageTag indicator) {
+        throw new AssertionError();
+    }
 
     @Unique
     private boolean sansrus$parsingCoords = false;
 
     @Inject(
-            method = "addPlayerMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V",
+            method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageSource;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V",
             at = @At("HEAD"), cancellable = true
     )
     private void sansrus$parseCoords(Component message, MessageSignature signatureData,
-                                     GuiMessageTag indicator, CallbackInfo ci) {
+                                     GuiMessageSource source, GuiMessageTag indicator,
+                                     CallbackInfo ci) {
         if (sansrus$parsingCoords) return;
         if (ChatPipelineFlags.deathMessageActive) return;
         if (ChatPipelineFlags.coordReinjecting) return;
         if (!SansrusModClient.isXaeroMinimapLoaded) return;
+        if (source == GuiMessageSource.SYSTEM_CLIENT) return;
 
         List<CoordParser.CoordMatch> matches = CoordParser.findAll(message.getString());
         if (matches.isEmpty()) return;
@@ -53,7 +59,7 @@ public abstract class ChatCoordParserMixin {
         ci.cancel();
         sansrus$parsingCoords = true;
         ChatPipelineFlags.coordReinjecting = true;
-        addPlayerMessage(result, signatureData, indicator);
+        addMessage(result, signatureData, source, indicator);
         ChatPipelineFlags.coordReinjecting = false;
         sansrus$parsingCoords = false;
     }
